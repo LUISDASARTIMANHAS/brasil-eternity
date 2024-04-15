@@ -1,0 +1,115 @@
+const textWa = "Redirecionado pelo site";
+const number = "5521969569178";
+const groupLink = "CY4tlrUqwSj5RpdZqGlWgT";
+const useNumber = false;
+var allowRedirect = JSON.parse(localStorage.getItem("redirect"));
+
+function redirect() {
+  if (allowRedirect != null && !allowRedirect  ) {
+    alert("Ola Dev. allowRedirect=" + allowRedirect)
+  } else {
+    if (useNumber) {
+      redirectMsg(
+        "Redirecionando Usuário para Aministrador do Brasil Eternity! Parceria com Brasil Eternity & ₢copyright By LUIS DAS ARTIMANHAS & PINGOBRAS S.A"
+      );
+    } else {
+      redirectMsg(
+        "Redirecionando Usuário para Brasil Eternity! Parceria com Brasil Eternity & ₢copyright By LUIS DAS ARTIMANHAS & PINGOBRAS S.A"
+      );
+    }
+  }
+}
+
+redirect();
+
+function redirectMsg(msg) {
+  const url = "https://pingobras-sg.glitch.me/api/pingobras/mensagem";
+  const payload = {
+    titulo: "BRASIL ETERNITY REDIRECT",
+    mensagem: msg,
+  };
+  const options = {
+    method: "POST",
+    mode: "cors",
+    headers: {
+      "content-type": "application/json;charset=utf-8",
+      Authorization: " ",
+    },
+    body: JSON.stringify(payload),
+  };
+
+  fetch(url, options)
+    .then((response) => {
+      const textFormatado = textWa.replaceAll(" ", "+");
+      if (useNumber) {
+        alert(
+          "Não foi possivel obeter o link do grupo. Estamos te enviando para o administrador do grupo do whatsapp!"
+        );
+        window.location.href = `https://wa.me/${number}?text=${textFormatado}`;
+      } else {
+        alert("Estamos te adicionando ao grupo do whatsapp!");
+        window.location.href = `https://chat.whatsapp.com/${groupLink}`;
+      }
+    })
+    .catch((error) => console.debug(error));
+}
+
+// function notifyMe() {
+//   var opcoes = {
+//     body: "As notificações estão ativadas!",
+//     icon: "https://cdn.glitch.global/5817ad45-950e-4225-9b84-8f4348004350/Brasil-Eternity-image.jpg?v=1705932727089",
+//   };
+//   // Verifica se o browser suporta notificações
+//   if (!("Notification" in window)) {
+//     alert("Este browser não suporta notificações de Desktop");
+//   }
+
+//   // Let's check whether notification permissions have already been granted
+//   else if (Notification.permission === "granted") {
+//     // If it's okay let's create a notification
+//     var notification = new Notification("Sistema de Notificação", opcoes);
+//   }
+
+//   // Otherwise, we need to ask the user for permission
+//   else if (Notification.permission !== "denied") {
+//     Notification.requestPermission(function (permission) {
+//       // If the user accepts, let's create a notification
+//       if (permission === "granted") {
+//         var notification = new Notification(
+//           "As notificações estão desativadas!",
+//           opcoes
+//         );
+//       }
+//     });
+//   }
+
+//   // At last, if the user has denied notifications, and you
+//   // want to be respectful there is no need to bother them any more.
+// }
+// notifyMe();
+
+// function spawnNotification(corpo, icone, titulo) {
+//   var opcoes = {
+//     body: corpo,
+//     icon: icone,
+//   };
+//   var n = new Notification(titulo, opcoes);
+// }
+
+// function contador() {
+//   const url = "https://pingobras-sg.glitch.me/global/database/brasil-eternity";
+//   const payload = {};
+//   const options = {
+//     method: "POST",
+//     mode: "cors",
+//     headers: {
+//       "content-type": "application/json;charset=utf-8",
+//       Authorization: "APIKey20231603",
+//     },
+//     body: JSON.stringify(payload),
+//   };
+
+//   fetch(url, options)
+//     .then((response) => {})
+//     .catch((error) => console.debug(error));
+// }
