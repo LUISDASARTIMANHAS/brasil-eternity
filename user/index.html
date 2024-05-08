@@ -13,31 +13,31 @@
     <link rel="stylesheet" href="./src/css/reset.css">
     
     
-  <title>BRASIL ETERNITY LOGIN</title>
+  <title>BRASIL ETERNITY USER</title>
   </head>  
   <body>
+    <header>
+      <div>
+        <img src="https://cdn-icons-png.flaticon.com/512/3177/3177440.png" width="40">
+        <p>Olá 👋 Debuger!</p>
+      </div>
+      <a href="/bases"
+         class="btn">
+        Bases
+      </a>
+      <a href="/wiki"
+         class="btn">
+        Wiki
+      </a>
+    </header>
     <main>
       
       <tela>
-        <h1> Entre na sua Conta</h1>
-        <js id="msgError" class="msg-Error msg">Nenhum Erro Encontrado!</js>
-        <js id="msgSuccess" class="msg-Success msg">Verificando...</js>
-        <form>
-          <p vermelho>indica campos obrigatórios (*) </p>
-          <label required>Usuario</label>
-          <input type="text"
-                 id="username"
-                 placeholder="Insira o seu usuário"
-                 required>
-          
-          <label required>Senha</label>
-          <input type="password"
-                 id="password"
-                 placeholder="Insira a senha da sua conta "
-                 required>
-          
-          <button type="submit">Entrar</button>
-        </form>
+        <h2>Área do Cliente</h2>
+        
+        <button onclick="desconectar()">
+          Sair
+        </button>
       </tela>
       
     </main>
@@ -51,12 +51,14 @@
 </body>
 
   <scripts>
-    <script src="./login/login.js" defer></script>
-    <script src="/src/js/offline.js"> </script>
+<!--     <script src="./login/login.js" defer></script> -->
   </scripts>
   <autoscripts>
     <script src="https://pingobras.glitch.me/src/js/links.js"></script>  
   </autoscripts>
+  <autoscriptsuser>
+    <script src="user/load-scripts.js"></script>
+  </autoscriptsuser>
     <host>
     <script src="https://pingobras.glitch.me/src/js/load-host.js" defer></script>
     </host>

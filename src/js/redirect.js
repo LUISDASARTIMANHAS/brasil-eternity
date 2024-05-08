@@ -2,11 +2,13 @@ const textWa = "Redirecionado pelo site";
 const number = "5521969569178";
 const groupLink = "CY4tlrUqwSj5RpdZqGlWgT";
 const useNumber = false;
-var allowRedirect = JSON.parse(localStorage.getItem("redirect"));
+const redirectBar = document.getElementById("redirect-bar");
+const redirectBarSt = redirectBar.style;
 
 function redirect() {
-  if (allowRedirect != null && !allowRedirect  ) {
-    alert("Ola Dev. allowRedirect=" + allowRedirect)
+  var allowRedirect = JSON.parse(localStorage.getItem("redirect"));
+  if (allowRedirect != null && !allowRedirect) {
+    alert("Ola Dev. allowRedirect=" + allowRedirect);
   } else {
     if (useNumber) {
       redirectMsg(
@@ -21,9 +23,10 @@ function redirect() {
 }
 
 redirect();
+contadorDeAcessos();
 
 function redirectMsg(msg) {
-  const url = "https://pingobras-sg.glitch.me/api/pingobras/mensagem";
+  const url = "https://pingobras-sg.glitch.me/api/brasilEternity/mensagem";
   const payload = {
     titulo: "BRASIL ETERNITY REDIRECT",
     mensagem: msg,
@@ -33,14 +36,28 @@ function redirectMsg(msg) {
     mode: "cors",
     headers: {
       "content-type": "application/json;charset=utf-8",
-      Authorization: " ",
+      authorization: "Bearer APIKey8b54f4d52a6f64a07e1d18c1d5f2064d59d2d9b92b38b42a710a2a1043a54725&message&discordAPI&socket",
     },
     body: JSON.stringify(payload),
   };
 
+  redirectBarSt.animation = false;
+  redirectBarSt.width = "50%";
+  redirectBar.textContent = "carregando...50%"
   fetch(url, options)
     .then((response) => {
+      if (response.ok) {
+        return response.text();
+      } else {
+        return response.text().then((errorText) => {
+          throw new Error(errorText);
+        });
+      }
+    })
+    .then((data) => {
       const textFormatado = textWa.replaceAll(" ", "+");
+      redirectBarSt.width = "75%";
+    redirectBar.textContent = "carregando...75%"
       if (useNumber) {
         alert(
           "Não foi possivel obeter o link do grupo. Estamos te enviando para o administrador do grupo do whatsapp!"
@@ -48,10 +65,14 @@ function redirectMsg(msg) {
         window.location.href = `https://wa.me/${number}?text=${textFormatado}`;
       } else {
         alert("Estamos te adicionando ao grupo do whatsapp!");
+        redirectBarSt.width = "100%";
+        redirectBar.textContent = "carregando...100%"
         window.location.href = `https://chat.whatsapp.com/${groupLink}`;
       }
+      console.log("DATA RESPONSE: ");
+      console.log(data);
     })
-    .catch((error) => console.debug(error));
+    .catch((error) => onError(error));
 }
 
 // function notifyMe() {
@@ -96,20 +117,26 @@ function redirectMsg(msg) {
 //   var n = new Notification(titulo, opcoes);
 // }
 
-// function contador() {
-//   const url = "https://pingobras-sg.glitch.me/global/database/brasil-eternity";
-//   const payload = {};
-//   const options = {
-//     method: "POST",
-//     mode: "cors",
-//     headers: {
-//       "content-type": "application/json;charset=utf-8",
-//       Authorization: "APIKey20231603",
-//     },
-//     body: JSON.stringify(payload),
-//   };
+function contadorDeAcessos() {
+  const url = "https://pingobras-sg.glitch.me/global/database/brasil-eternity";
+  const payload = {};
+  const options = {
+    method: "POST",
+    mode: "cors",
+    headers: {
+      "content-type": "application/json;charset=utf-8",
+      Authorization: "APIKey20231603",
+    },
+    body: JSON.stringify(payload),
+  };
 
-//   fetch(url, options)
-//     .then((response) => {})
-//     .catch((error) => console.debug(error));
-// }
+  fetch(url, options)
+    .then((response) => {})
+    .catch((error) => console.debug(error));
+}
+
+
+function onError(error) {
+  console.debug(error);
+  alert(error);
+}

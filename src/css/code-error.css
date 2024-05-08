@@ -74,3 +74,38 @@ a img {
   height: 54px;
   width: 150px;
 }
+
+box-bar {
+  background: gray;
+  width: 75%;
+  display: block;
+  position: absolute;
+  border-radius: 25px;
+  border: 1px solid silver;
+}
+
+box-bar bar {
+  background: blue;
+  width: 25%;
+  display: block;
+  position: relative;
+  right: 10px;
+  animation: bar-loading-animation 7.5s infinite linear;
+  -webkit-animation: bar-loading-animation 7.5s infinite linear;
+  border-radius: 25px;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+}
+
+@keyframes bar-loading-animation {
+  0% {
+    right: 0%;
+  }
+  50% {
+    right: -75%;
+  }
+  100% {
+    right: 0%;
+  }
+}
