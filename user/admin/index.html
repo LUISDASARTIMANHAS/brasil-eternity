@@ -10,12 +10,27 @@
 
     <link rel="icon" href="https://cdn.glitch.global/5817ad45-950e-4225-9b84-8f4348004350/Brasil-Eternity-image.jpg?v=1705932727089" />
     <links></links>
-    <link rel="stylesheet" href="./src/css/reset.css">
+    <link rel="stylesheet" href="/src/css/reset.css">
+    <link rel="stylesheet" href="/user/admin/admin.css">
     
     
   <title>BRASIL ETERNITY ADMIN EDITION</title>
   </head>  
   <body>
+    <header>
+      <div>
+        <img src="https://cdn-icons-png.flaticon.com/512/3177/3177440.png" width="40">
+        <p id="username"></p>
+      </div>
+      <a href="/bases"
+         class="btn">
+        Bases
+      </a>
+      <a href="/wiki"
+         class="btn">
+        Wiki
+      </a>
+    </header>
     <main>
       
       <tela>
@@ -23,8 +38,24 @@
         <select id="selectBases">
           <option value="default">Selecione uma base</option>
         </select>
+        
+        <select id="selectAdmin">
+          <option value="default">Selecione um admin</option>
+          <option value="Admin 01">Admin 01</option>
+          <option value="Admin 02">Admin 02</option>
+          <option value="Admin 03">Admin 03</option>
+          <option value="Admin 04">Admin 04</option>
+        </select>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
       </tela>
       
+       <button class="btnFixedLeft" onclick="desconectarADM()">
+          Sair
+       </button>
     </main>
     <footer>
       <div id="direitos" class="direitos">
@@ -40,7 +71,10 @@
   </scripts>
   <autoscripts>
     <script src="https://pingobras.glitch.me/src/js/links.js"></script>  
-  </autoscripts>
+  </autoscripts>  
+  <autoscriptsuser>
+    <script src="/user/load-scripts.js"></script>
+  </autoscriptsuser>
     <host>
     <script src="https://pingobras.glitch.me/src/js/load-host.js" defer></script>
     </host>

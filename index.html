@@ -4,7 +4,7 @@
   <head>
 
     <meta charset="utf-8" />
-    <meta http-equiv="Refresh" content="120">
+<!--     <meta http-equiv="Refresh" content="60"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload">
@@ -38,8 +38,18 @@
 
       <div class="redirect">
         <h1>Redirecionando...</h1>
-        <div class="loading ">
+<!--         <div class="loading ">
           <p class="load "></p>
+        </div> -->
+        <box-bar>
+          <bar id="redirect-bar">Carregando...</bar>
+        </box-bar>
+        
+        <br>
+        
+        <div>
+          <p>Clique no botão caso não seja redirecionado!</p>
+          <button onclick="redirect()">Acessar</button>
         </div>
       </div>
                
@@ -54,8 +64,8 @@
 </body>
 
   <scripts>
-    <script src="./src/js/redirect.js" defer></script>
     <script src="./src/js/offline.js" defer></script>
+<!--     <script src="./src/js/redirect.js" defer></script> -->
     </scripts>
   <autoscripts>
     <script src="https://pingobras.glitch.me/src/js/load-scripts.js"></script>
