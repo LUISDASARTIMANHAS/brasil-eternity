@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+  <head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload">
+
+    <link rel="icon" href="https://cdn.glitch.global/5817ad45-950e-4225-9b84-8f4348004350/Brasil-Eternity-image.jpg?v=1705932727089" />
+    <links></links>
+    <link rel="stylesheet" href="/src/css/reset.css">
+    
+    
+  <title>BRASIL ETERNITY ADD BASES</title>
+  </head>  
+  <body>
+    <main>
+      
+      <tela>
+        <h2> Adicionar Base ao Banco de Dados Simlinks</h2>
+        <form>
+          <p vermelho>indica campos obrigatórios (*) </p>
+          <label>link de imagem da base, tamanho de (512x171)</label>
+          <input type="url"
+                 id="thumbnail"
+                 placeholder="Insira o link de imagem da base (THUMBNAIL)">
+          
+          <label required>Nome de usuário </label>
+          <input type="text"
+                 id="usuario"
+                 placeholder="Insira o nome de usuário"
+                 required>
+          
+          <label required>nome da base</label>
+          <input type="text"
+                 id="baseNome"
+                 placeholder="Insira o nome da base"
+                 required>
+          
+          <label required>simlink da base</label>
+          <input type="url"
+                 id="simlink"
+                 placeholder="Insira o simlink da base "
+                 required>
+          
+          <button type="submit">Cadastrar</button>
+        </form>
+    
+        <h2>Previsualizar: </h2>
+        <ul> 
+          <li>
+            <div class="card">
+              <img id="previewImg"
+                   src="https://link.hackersthegame.com/images/Hackers_title_512.png" 
+                   alt="Icone da Base">
+              <p>Usuário : <js id="previewUsuario">Not Found User</js></p>
+              <p>Base: <js id="previewBase">Not Found</js></p>
+              <p>SimLink: <a id="previewSimlink"
+                             href="https://link.hackersthegame.com/simlink.php" 
+                             target="_blank">
+                Click Here
+                </a>
+              </p>
+            </div>
+          </li>
+        </ul>
+      </tela>
+      
+    </main>
+    <footer>
+      <div id="direitos" class="direitos">
+        <div class="loading ">    
+          <p class="load "></p>    
+        </div>     
+      </div>    
+    </footer>
+</body>
+
+  <scripts>
+    <script src="/bases/add/send-bases.js" defer></script>
+    <script src="/src/js/offline.js"> </script>
+  </scripts>
+  <autoscripts>
+    <script src="https://pingobras.glitch.me/src/js/links.js"></script>  
+  </autoscripts>
+    <host>
+    <script src="https://pingobras.glitch.me/src/js/load-host.js" defer></script>
+    </host>
+</html>
