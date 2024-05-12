@@ -1,6 +1,6 @@
 (() => {
   const body = document.querySelector("body");
-  const offline = true;
+  const offline = false;
 
   
   if (offline) {

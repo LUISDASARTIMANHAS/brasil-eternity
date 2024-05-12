@@ -25,7 +25,7 @@ function getData() {
     headers: {
       "content-type": "application/json;charset=utf-8",
       Authorization:
-        "Bearer brasil-eternity&route=login&auth=0hB2&ieart12=a4ne0u& o=e2r07ot15rlg2u",
+        "Bearer QlJBU0lMIEVURVJOSVRZIENMSUVOVDpicmFzaWwtZXRlcm5pdHkmcm91dGU9YXBp",
       key: date.getUTCHours() * date.getFullYear() * id,
       id: id,
     },
@@ -91,7 +91,7 @@ function loginMessage(msg) {
     mode: "cors",
     headers: {
       "content-type": "application/json;charset=utf-8",
-      Authorization: "APIKey20240102&message&pingobras&socket",
+      Authorization: genTokenEncodeBase64("BRASIL ETERNITY CLIENT","brasil-eternity&route=api"),
     },
     body: JSON.stringify(payload),
   };
@@ -109,4 +109,10 @@ function loginMessage(msg) {
       console.log(data);
     })
     .catch((error) => console.debug(error));
+}
+
+function genTokenEncodeBase64(user, password) {
+  var token = user + ":" + password;
+  var encodedToken = btoa(token);
+  return "Basic " + encodedToken;
 }

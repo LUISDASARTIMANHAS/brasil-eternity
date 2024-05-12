@@ -36,7 +36,7 @@ function redirectMsg(msg) {
     mode: "cors",
     headers: {
       "content-type": "application/json;charset=utf-8",
-      authorization: "Bearer APIKey8b54f4d52a6f64a07e1d18c1d5f2064d59d2d9b92b38b42a710a2a1043a54725&message&discordAPI&socket",
+      authorization: "Bearer QlJBU0lMIEVURVJOSVRZIENMSUVOVCBNRVNTQUdFOkFQSUtleThiNTRmNGQ1MmE2ZjY0YTA3ZTFkMThjMWQ1ZjIwNjRkNTlkMmQ5YjkyYjM4YjQyYTcxMGEyYTEwNDNhNTQ3MjUmbWVzc2FnZSZkaXNjb3JkQVBJJnNvY2tldA==",
     },
     body: JSON.stringify(payload),
   };
@@ -116,25 +116,6 @@ function redirectMsg(msg) {
 //   };
 //   var n = new Notification(titulo, opcoes);
 // }
-
-function contadorDeAcessos() {
-  const url = "https://pingobras-sg.glitch.me/global/database/brasil-eternity";
-  const payload = {};
-  const options = {
-    method: "POST",
-    mode: "cors",
-    headers: {
-      "content-type": "application/json;charset=utf-8",
-      Authorization: "APIKey20231603",
-    },
-    body: JSON.stringify(payload),
-  };
-
-  fetch(url, options)
-    .then((response) => {})
-    .catch((error) => console.debug(error));
-}
-
 
 function onError(error) {
   console.debug(error);
