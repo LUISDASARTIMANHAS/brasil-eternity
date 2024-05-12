@@ -7,7 +7,7 @@ function getBases() {
     mode: "cors",
     headers: {
       "content-type": "application/json;charset=utf-8",
-      Authorization: "Bearer brasil-eternity&auth=afddsafhatoshajslnchcasdc",
+      Authorization: genTokenEncodeBase64("BRASIL ETERNITY CLIENT","brasil-eternity&route=api"),
       key: date.getUTCHours() * date.getFullYear() * id,
       id: id,
     },
@@ -105,4 +105,8 @@ function onError(error) {
   alert(error);
 }
 
-// <p>Usuário : <js id="previewUsuario">Not Found User</js></p>
+function genTokenEncodeBase64(user, password) {
+  var token = user + ":" + password;
+  var encodedToken = btoa(token);
+  return "Basic " + encodedToken;
+}

@@ -102,7 +102,7 @@ function atualizarBase(lastBase, base, user, thumbnail) {
     mode: "cors",
     headers: {
       "content-type": "application/json;charset=utf-8",
-      Authorization: "Bearer brasil-eternity&auth=afddsafhatoshajslnchcasdc",
+      Authorization: genTokenEncodeBase64("BRASIL ETERNITY CLIENT","brasil-eternity&route=api"),
       key: date.getUTCHours() * date.getFullYear() * id,
       id: id,
     },
@@ -139,7 +139,7 @@ function getBase() {
     mode: "cors",
     headers: {
       "content-type": "application/json;charset=utf-8",
-      Authorization: "Bearer brasil-eternity&auth=afddsafhatoshajslnchcasdc",
+      Authorization: window.genTokenEncodeBase64("BRASIL ETERNITY CLIENT","brasil-eternity&route=api"),
       key: date.getUTCHours() * date.getFullYear() * id,
       id: id,
     },
@@ -192,3 +192,10 @@ function pesqBase(database, name) {
   return -1;
 }
 getBase();
+
+
+function genTokenEncodeBase64(user, password) {
+  var token = user + ":" + password;
+  var encodedToken = btoa(token);
+  return "Basic " + encodedToken;
+}

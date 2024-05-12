@@ -34,7 +34,7 @@ btnALL.forEach((btn) => {
 for (let i = 0; i < AreaDeTexto.length; i++) {
   AreaDeTexto[i].style.height = AreaDeTexto[i].scrollHeight;
   AreaDeTexto[i].addEventListener("input", AoDigitar, false);
-  this.value = ""
+  this.value = "";
 }
 
 function pageYT() {
@@ -50,9 +50,16 @@ function redirectUrl(url) {
   window.location.href = url;
 }
 
-function FullScreen(){
+function FullScreen() {
   document.documentElement.requestFullscreen();
 }
+
+function genTokenEncodeBase64(user, password) {
+  var token = user + ":" + password;
+  var encodedToken = btoa(token);
+  return "Basic " + encodedToken;
+}
+
 
 //======================= Events listener =====================
 if (Subir) {
@@ -70,11 +77,10 @@ if (Descer) {
   });
 }
 
-
 function AoDigitar() {
-  console.warn("Redimensionamento Automático Ativado!")
+  console.warn("Redimensionamento Automático Ativado!");
   this.style.height = 0;
-  this.style.height = (this.scrollHeight +20) + "px";
+  this.style.height = this.scrollHeight + 20 + "px";
 }
 
 function addSoundClicker(button) {
