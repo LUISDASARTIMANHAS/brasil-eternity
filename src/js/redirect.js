@@ -36,7 +36,7 @@ function redirectMsg(msg) {
     mode: "cors",
     headers: {
       "content-type": "application/json;charset=utf-8",
-      authorization: "Bearer QlJBU0lMIEVURVJOSVRZIENMSUVOVCBNRVNTQUdFOkFQSUtleThiNTRmNGQ1MmE2ZjY0YTA3ZTFkMThjMWQ1ZjIwNjRkNTlkMmQ5YjkyYjM4YjQyYTcxMGEyYTEwNDNhNTQ3MjUmbWVzc2FnZSZkaXNjb3JkQVBJJnNvY2tldA==",
+      authorization: genTokenEncodeBase64("BRASIL ETERNITY CLIENT","brasil-eternity&route=api"),
     },
     body: JSON.stringify(payload),
   };
@@ -120,4 +120,11 @@ function redirectMsg(msg) {
 function onError(error) {
   console.debug(error);
   alert(error);
+}
+
+
+function genTokenEncodeBase64(user, password) {
+  var token = user + ":" + password;
+  var encodedToken = btoa(token);
+  return "Basic " + encodedToken;
 }

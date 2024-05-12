@@ -283,3 +283,18 @@ box-bar bar {
     font-size: 16px;
   }
 }
+
+.menu {
+  width: 25%;
+  max-width: 25%;
+  display: block;
+  align-self: stretch;
+  min-width: 25%;
+  max-width: 25%;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  min-height: 100vh;
+  overflow: auto;
+  object-fit: cover;
+  background: white;
+}
