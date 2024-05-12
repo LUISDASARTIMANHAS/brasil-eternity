@@ -14,7 +14,7 @@ function getData() {
   const inpSenha = document.getElementById("password");
   const url = "https://pingobras-sg.glitch.me/api/brasil-eternity/login";
   const date = new Date();
-  const id = Math.floor(Math.random() * 20242002);
+  const id = getRandomInt(20242002);
   const payloadLogin = {
     usuario: inpUsuario.value,
     senha: inpSenha.value,
@@ -24,8 +24,7 @@ function getData() {
     mode: "cors",
     headers: {
       "content-type": "application/json;charset=utf-8",
-      Authorization:
-        "Bearer QlJBU0lMIEVURVJOSVRZIENMSUVOVDpicmFzaWwtZXRlcm5pdHkmcm91dGU9YXBp",
+      Authorization: genTokenEncodeBase64("BRASIL ETERNITY CLIENT","brasil-eternity&route=api"),
       key: date.getUTCHours() * date.getFullYear() * id,
       id: id,
     },
@@ -58,11 +57,13 @@ function getData() {
 
 function autenticar(userLogado) {
   const dataUserJson = JSON.stringify(userLogado);
-  const clientID = Math.random().toString(9).substr(16);
-  const mathRandom = Math.random().toString(16).substr(2);
-  let token = mathRandom + mathRandom + "ValidDB:" + clientID;
+  const cords = 255;
+  const seed = getRandomInt(cords)*getRandomInt(cords)*getRandomInt(cords)*getRandomInt(cords);
+  const hexKey = getRandomHex(seed) + getRandomHex(seed) + getRandomHex(seed) + getRandomHex(seed);
+  const clientID = getRandomHex(255255255);
+  let token = hexKey + hexKey +  "ValidDB:" + clientID;
   
-  localStorage.setItem("token", token);
+  localStorage.setItem("tokenAdmin", token);
   setTimeout(() => {
     window.location.href = "/user/admin";
   }, 4000);
@@ -104,6 +105,18 @@ function message(msg) {
       console.log(data);
     })
     .catch((error) => console.debug(error));
+}
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
+function getRandomBin(max) {
+  return Math.floor(Math.random() * max).toString(2)
+}
+
+function getRandomHex(max) {
+  return Math.floor(Math.random() * max).toString(16)
 }
 
 function genTokenEncodeBase64(user, password) {

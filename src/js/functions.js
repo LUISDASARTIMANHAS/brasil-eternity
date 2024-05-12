@@ -54,6 +54,18 @@ function FullScreen() {
   document.documentElement.requestFullscreen();
 }
 
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
+function getRandomBin(max) {
+  return Math.floor(Math.random() * max).toString(2)
+}
+
+function getRandomHex(max) {
+  return Math.floor(Math.random() * max).toString(16)
+}
+
 function genTokenEncodeBase64(user, password) {
   var token = user + ":" + password;
   var encodedToken = btoa(token);

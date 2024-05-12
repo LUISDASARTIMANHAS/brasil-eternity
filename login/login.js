@@ -57,9 +57,11 @@ function getData() {
 
 function autenticar(userLogado) {
   const dataUserJson = JSON.stringify(userLogado);
-  const clientID = Math.random().toString(9).substr(16);
-  const mathRandom = Math.random().toString(16).substr(2);
-  let token = mathRandom + mathRandom + "ValidDB:" + clientID;
+  const cords = 127;
+  const seed = getRandomInt(cords)*getRandomInt(cords)*getRandomInt(cords)*getRandomInt(cords);
+  const hexKey = getRandomHex(seed) + getRandomHex(seed) + getRandomHex(seed) + getRandomHex(seed);
+  const clientID = getRandomInt(255);
+  let token = hexKey + hexKey +  "ValidDB:" + clientID;
 
   localStorage.setItem("token", token);
   msgError.setAttribute("style", "display: none");
@@ -108,6 +110,18 @@ function loginMessage(msg) {
       console.log(data);
     })
     .catch((error) => console.debug(error));
+}
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
+function getRandomBin(max) {
+  return Math.floor(Math.random() * max).toString(2)
+}
+
+function getRandomHex(max) {
+  return Math.floor(Math.random() * max).toString(16)
 }
 
 function genTokenEncodeBase64(user, password) {

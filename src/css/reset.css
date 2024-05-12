@@ -287,7 +287,9 @@ box-bar bar {
 .menu {
   width: 25%;
   max-width: 25%;
-  display: block;
+   display:flex;
+ flex-direction:column;
+ align-items:center;
   align-self: stretch;
   min-width: 25%;
   max-width: 25%;
@@ -296,5 +298,10 @@ box-bar bar {
   min-height: 100vh;
   overflow: auto;
   object-fit: cover;
+  
+}
+
+.menu-wiki {
   background: white;
+  font-size: 10px;
 }
