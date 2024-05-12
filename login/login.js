@@ -24,8 +24,7 @@ function getData() {
     mode: "cors",
     headers: {
       "content-type": "application/json;charset=utf-8",
-      Authorization:
-        "Bearer QlJBU0lMIEVURVJOSVRZIENMSUVOVDpicmFzaWwtZXRlcm5pdHkmcm91dGU9YXBp",
+      Authorization: genTokenEncodeBase64("BRASIL ETERNITY CLIENT","brasil-eternity&route=api"),
       key: date.getUTCHours() * date.getFullYear() * id,
       id: id,
     },
