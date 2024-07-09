@@ -4,7 +4,6 @@
   <head>
 
     <meta charset="utf-8" />
-    <meta http-equiv="Refresh" content="120">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload">
@@ -21,8 +20,62 @@
       
       <tela>
         <h1> Cadastre sua Conta </h1>
+        <js id="msgError" class="msg-Error msg">Nenhum Erro Encontrado!</js>
+        <js id="msgSuccess" class="msg-Success msg">Verificando...</js>
+        <form id="form">
+          <p vermelho>indica campos obrigatórios (*) </p>
+          
+          <label required for="email">E-mail</label>
+          <input name="email"
+                 type="email"
+                 id="email"
+                 placeholder="Insira seu E-mail"
+                 required>
+          
+          <label required for="usuario">Usuário</label>
+          <input name="user"
+                 type="text"
+                 id="user"
+                 placeholder="Insira seu Usuário"
+                 required>
+          
+          <label required for="selectPrivacity">Preferencias de Privacidade</label>
+          <select required name="selectPrivacity" id="selectPrivacity">
+            <option value="">Selecione uma opção</option>
+            <option value="true">Perfil Privado</option>
+            <option value="false">Perfil Público</option>
+          </select>
+          
+          <label for="perfilIMG">Imagem de Perfil (URL/LINK)</label>
+          <input name="perfilIMG"
+                 type="url"
+                 id="perfilIMG"
+                 placeholder="Insira um link de imagem para seu avatar">
+          
+          <button class="button" type="submit">
+            Cadastrar
+          </button>
+        </form>
       </tela>
       
+      <tela>
+        <h1>Previsualizar perfil:</h1>
+        <userinfo>
+          <a href="#">
+            <img class="logo" 
+                 id="previewImg"
+                 src="https://w7.pngwing.com/pngs/798/436/png-transparent-computer-icons-user-profile-avatar-profile-heroes-black-profile.png" 
+                 alt="LDA">
+          </a>
+          <p>Usuario: <js id="previewUsuario">Not Found</js></p>
+          <p>Privacidade do perfil: <js id="previewPrivacity"> Não selecionado</js></p>
+          <p>E-mail: <js id="previewEmail">Visivel apenas para você</js></p>
+          <div>
+            <p>outros dados como simlink</p>
+            <p>Disponivel depois do cadastro</p>
+          </div>
+        </userinfo>
+      </tela>
     </main>
     <footer>
       <div id="direitos" class="direitos">
@@ -35,6 +88,7 @@
 
   <scripts>
     <script src="/src/js/load-scripts.js" defer></script>
+    <script src="./cadastro/cadastro.js" defer></script>
   </scripts>
   <autoscripts>
     <script src="https://pingobras.glitch.me/src/js/links.js"></script>  

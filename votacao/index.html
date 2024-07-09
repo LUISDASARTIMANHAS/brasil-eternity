@@ -4,7 +4,7 @@
   <head>
 
     <meta charset="utf-8" />
-    <meta http-equiv="Refresh" content="120">
+    <meta http-equiv="Refresh" content="180">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload">
@@ -14,31 +14,29 @@
     <link rel="stylesheet" href="/src/css/reset.css">
     
     
-  <title>BRASIL ETERNITY REDEFINIR SENHA</title>
+  <title>BRASIL ETERNITY VOTAÇÃO</title>
   </head>  
   <body>
+    <header>
+      <a href="/"
+         class="btn">
+        <ion-icon name="home-outline">Home</ion-icon>
+        Home
+      </a>
+      
+    </header>
     <main>
       
       <tela>
-        <h1> Entre na sua Conta</h1>
-        <js id="msgError" class="msg-Error msg">Nenhum Erro Encontrado!</js>
-        <js id="msgSuccess" class="msg-Success msg">Verificando...</js>
-        <form>
-          <p vermelho>indica campos obrigatórios (*) </p>
-          <label required>E-mail</label>
-          <input type="email"
-                 id="email"
-                 placeholder="Insira seu e-mail example@gmail.com"
-                 required>
-          
-          <label required>Nova senha</label>
-          <input type="password"
-                 id="senha"
-                 placeholder="Insira sua nova senha"
-                 required>
-          
-          <button type="submit">Redefinir</button>
-        </form>
+        <h2> Votação</h2>
+        
+        <ul id="autoloadBases"> 
+<!--           carregado automaticamente -->
+          <div class="loading">
+              <p class="load rgb"></p>
+            </div> 
+        </ul>
+        
       </tela>
       
     </main>
@@ -52,10 +50,14 @@
 </body>
 
   <scripts>
-    <script src="./src/js/loader-scripts.js" defer></script>
+    <script src="/src/js/load-scripts.js" defer></script>
   </scripts>
   <autoscripts>
-    <script src="https://pingobras.glitch.me/src/js/links.js"></script>  
+    <script src="https://pingobras.glitch.me/src/js/ip-info.js" defer></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://pingobras.glitch.me/src/js/links.js"></script> 
+    <script src="https://pingobras.glitch.me/src/js/load-scripts.js"></script>
   </autoscripts>
     <host>
     <script src="https://pingobras.glitch.me/src/js/load-host.js" defer></script>

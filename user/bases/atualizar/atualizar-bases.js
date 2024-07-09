@@ -3,7 +3,7 @@ const selectBases = document.getElementById("bases-select");
 let bases = [];
 
 form.addEventListener("submit", stopDefAction);
-form.addEventListener("input", preview);
+form.addEventListener("click", preview);
 
 function stopDefAction(event) {
   event.preventDefault();
@@ -12,9 +12,9 @@ function stopDefAction(event) {
 
 function verificar() {
   const inpUsuario = document.getElementById("usuario");
-  const inpbaseNome = document.getElementById("baseNome");
   const inpThumbnail = document.getElementById("thumbnail");
   const baseSelecionada = selectBases.value;
+  const base = pesqBase(bases, baseSelecionada);
   var thumbnail = inpThumbnail.value;
 
   if (baseSelecionada == "default") {
@@ -33,12 +33,14 @@ function verificar() {
       thumbnail =
         "https://link.hackersthegame.com/images/Hackers_title_512.png";
     }
-    atualizarBase(
-      baseSelecionada,
-      inpbaseNome.value,
-      inpUsuario.value,
-      thumbnail
-    );
+    getBaseName(base.simlink, (baseNameFormated) => {
+      atualizarBase(
+        baseSelecionada,
+        baseNameFormated,
+        inpUsuario.value,
+        thumbnail
+      );
+    });
   }
 }
 
@@ -52,18 +54,19 @@ function preview() {
   const previewUsuario = document.getElementById("previewUsuario");
   const previewImg = document.getElementById("previewImg");
   const previewSimlink = document.getElementById("previewSimlink");
-  const inpbaseNome = document.getElementById("baseNome");
   const inpUsuario = document.getElementById("usuario");
   const inpThumbnail = document.getElementById("thumbnail");
   const baseSelecionada = selectBases.value;
   const base = pesqBase(bases, baseSelecionada);
-
-  if (inpbaseNome.value == "") {
-    previewBase.textContent = base.name || "Not Found";
+  
+  if (baseSelecionada == "default") {
+    previewBase.textContent = "Selecione uma Base para Editar!";
   } else {
-    previewBase.textContent = `『ᴮʳETER』${inpbaseNome.value}`;
+      getBaseName(base.simlink, (baseNameFormated) => {
+        previewBase.textContent = `『ᴮʳETER』${baseNameFormated}`;
+      });
   }
-
+  
   if (inpUsuario.value == "") {
     previewUsuario.textContent = base.user || "Not Found User";
   } else {
@@ -87,6 +90,7 @@ function preview() {
   }
 }
 
+
 function atualizarBase(lastBase, base, user, thumbnail) {
   const url = "https://pingobras-sg.glitch.me/api/brasil-eternity/bases";
   const date = new Date();
@@ -102,29 +106,35 @@ function atualizarBase(lastBase, base, user, thumbnail) {
     mode: "cors",
     headers: {
       "content-type": "application/json;charset=utf-8",
-      Authorization: genTokenEncodeBase64("BRASIL ETERNITY CLIENT","brasil-eternity&route=api"),
+      Authorization: genTokenEncodeBase64(
+        "BRASIL ETERNITY CLIENT",
+        "brasil-eternity&route=api"
+      ),
       key: date.getUTCHours() * date.getFullYear() * id,
       id: id,
     },
     body: JSON.stringify(payloadLogin),
   };
 
+  message("Atualizando Base Aguarde confirmação...");
   fetch(url, options)
     .then((response) => {
       if (response.ok) {
         return response.text();
       } else {
         return response.text().then((errorText) => {
-          throw new Error("Erro ao cadastrar base: " + errorText);
+          message("Erro ao atualizar base: " + errorText);
+          throw new Error("Erro ao atualizar base: " + errorText);
         });
       }
     })
     .then((data) => {
       console.log("DATA RESPONSE: ");
       console.log(data);
+      message(data);
       alert(data);
       setTimeout(() => {
-        window.location.href = "/bases";
+        window.location.href = "/user/bases";
       }, 2000);
     })
     .catch((error) => onError(error));
@@ -139,7 +149,10 @@ function getBase() {
     mode: "cors",
     headers: {
       "content-type": "application/json;charset=utf-8",
-      Authorization: window.genTokenEncodeBase64("BRASIL ETERNITY CLIENT","brasil-eternity&route=api"),
+      Authorization: window.genTokenEncodeBase64(
+        "BRASIL ETERNITY CLIENT",
+        "brasil-eternity&route=api"
+      ),
       key: date.getUTCHours() * date.getFullYear() * id,
       id: id,
     },
@@ -164,6 +177,67 @@ function getBase() {
     .catch((error) => onError(error));
 }
 
+function getBaseName(simlink, callback) {
+  const date = new Date();
+  const id = Math.floor(Math.random() * 20242002);
+  const payload = {
+    urlParams: simlink.replace(
+      "https://link.hackersthegame.com/simlink.php?",
+      ""
+    ),
+  };
+  const options = {
+    method: "POST",
+    headers: {
+      "content-type": "application/json; charset=UTF-8",
+      Accept: "*/*",
+      "Cache-Control": "no-cache",
+      "Accept-Encoding": "gzip, deflate, br",
+      Connection: "keep-alive",
+      Authorization: genTokenEncodeBase64(
+        "BRASIL ETERNITY CLIENT",
+        "brasil-eternity&route=api"
+      ),
+      key: date.getUTCHours() * date.getFullYear() * id,
+      id: id,
+    },
+    body: JSON.stringify(payload),
+  };
+  const parser = new DOMParser();
+
+  message("Obtendo nome da base para efetuar atualização!");
+  fetch(
+    "https://pingobras-sg.glitch.me/api/brasil-eternity/bases/name",
+    options
+  )
+    .then((response) => {
+      if (response.ok) {
+        return response.text();
+      } else {
+        return response.text().then((errorText) => {
+          message("Erro ao buscar nome da base: " + errorText);
+          throw new Error("Erro ao buscar nome da base: " + errorText);
+        });
+      }
+    })
+    .then((data) => {
+      const dom = parser.parseFromString(data, "text/html");
+      const baseName = dom.title;
+      const baseNameFormated = baseName
+        .replace("SimLink to ", "")
+        .replace("'s network", "")
+        .replace("『ᴮʳETER』", "");
+      message("Nome da base obtido com sucesso!");
+      callback(baseNameFormated);
+    })
+    .catch((error) => onError(error));
+
+  function onError(error) {
+    console.error(error);
+    alert(error);
+  }
+}
+
 function addBasesSelect(database) {
   for (let i = 0; i < database.length; i++) {
     const base = database[i];
@@ -175,7 +249,6 @@ function addBasesSelect(database) {
     option.value = baseName;
 
     selectBases.appendChild(option);
-    console.log(base);
   }
   bases = database;
 }
@@ -193,6 +266,39 @@ function pesqBase(database, name) {
 }
 getBase();
 
+function message(msg) {
+  const url = "https://pingobras-sg.glitch.me/api/brasilEternity/mensagem";
+  const payload = {
+    titulo: "ATUALIZAR/BASE/BRASIL ETERNITY",
+    mensagem: msg,
+  };
+  const options = {
+    method: "POST",
+    mode: "cors",
+    headers: {
+      "content-type": "application/json;charset=utf-8",
+      Authorization: genTokenEncodeBase64(
+        "BRASIL ETERNITY CLIENT",
+        "brasil-eternity&route=api"
+      ),
+    },
+    body: JSON.stringify(payload),
+  };
+
+  // fetch(url, options)
+  //   .then((response) => {
+  //     if (response.ok) {
+  //       return response.json();
+  //     } else {
+  //       return response.text();
+  //     }
+  //   })
+  //   .then((data) => {
+  //     console.log("DATA RESPONSE: ");
+  //     console.log(data);
+  //   })
+  //   .catch((error) => console.debug(error));
+}
 
 function genTokenEncodeBase64(user, password) {
   var token = user + ":" + password;

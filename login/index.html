@@ -4,7 +4,7 @@
   <head>
 
     <meta charset="utf-8" />
-    <meta http-equiv="Refresh" content="120">
+    <meta http-equiv="Refresh" content="240">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload">
@@ -23,30 +23,38 @@
         <h1> Entre na sua Conta</h1>
         <js id="msgError" class="msg-Error msg">Nenhum Erro Encontrado!</js>
         <js id="msgSuccess" class="msg-Success msg">Verificando...</js>
-        <form>
+        <form id="form">
+          <h2>Entrar Usando Magic Link</h2>
           <p vermelho>indica campos obrigatórios (*) </p>
-          <label required>Usuario</label>
-          <input type="text"
-                 id="username"
-                 placeholder="Insira o seu usuário"
+          <label required for="email">Email</label>
+          <input type="email"
+                 id="email"
+                 placeholder="Insira o seu e-mail"
                  required>
           
-          <label required>Senha</label>
-          <input type="password"
-                 id="password"
-                 placeholder="Insira a senha da sua conta "
-                 required>
-          
-          <button type="submit">Entrar</button>
+          <button type="submit">
+            Enviar Código 
+          </button>
         </form>
         
-        <p>Esqueseu sua senha?</p>
-         <button
-           onclick="redirectUrl('/login/redefinir')"> 
-          Redefinir senha
-        </button>
+        <form hidden id="formCode">
+          <p vermelho>indica campos obrigatórios (*) </p>
+          <label required for="code">Código</label>
+          <input type="number"
+                 id="code"
+                 placeholder="Insira o Código Enviado"
+                 required>
+          
+          <button type="submit">
+            Entrar
+          </button>
+        </form>
         
-        <hr>
+        <label for="continueConnected"> Permanecer conectado? </label>
+        <input type="checkbox" 
+               id="continueConnected" 
+               name="continueConnected"
+               checked>
         
         <p>Não tem uma conta?</p>
          <button

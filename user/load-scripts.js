@@ -1,7 +1,9 @@
+(() => {
 const autoscriptsUser = document.querySelector("autoscriptsuser");
 const fonteUser = "https://brasil-eternity.glitch.me/user/"
 const srcsUser = [
-  "auth"
+  "auth",
+  "load-userinfo"
 ]
 
 
@@ -13,3 +15,4 @@ autoscriptsUser.appendChild(newScriptUser)
   
 console.log(" Novo User Script Num: " + srcsUser[i])
 }
+})();
