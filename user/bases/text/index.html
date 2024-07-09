@@ -4,48 +4,40 @@
   <head>
 
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<!--     <meta http-equiv="Refresh" content="120"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=0.7" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload">
 
     <link rel="icon" href="https://cdn.glitch.global/5817ad45-950e-4225-9b84-8f4348004350/Brasil-Eternity-image.jpg?v=1705932727089" />
     <links></links>
-    <link rel="stylesheet" href="./src/css/reset.css">
+    <link rel="stylesheet" href="/src/css/reset.css">
     
     
-  <title>BRASIL ETERNITY USER</title>
+  <title>BRASIL ETERNITY BASES</title>
   </head>  
   <body>
-    <header>
-      
-      <userinfo>
-        <a href="/"
-         class="btn">
-        <ion-icon name="home-outline">Home</ion-icon>
-        Home
-      </a>
-        <img class="logo"
-             id="perfilIcon"
-             src="https://cdn-icons-png.flaticon.com/512/3177/3177440.png" width="40">
-        <p id="logado">Erro 404 Not Found User!</p>
-      </userinfo>
-      <a href="user/bases"
-         class="btn">
-        Bases
-      </a>
-      <a -href="/wiki"
-         class="btn">
-        Wiki
-      </a>
-    </header>
     <main>
       
       <tela>
-        <h2>Área do Cliente</h2>
+        <h2> Texto Copia e Cola</h2>
         
-        
-        <button onclick="desconectar()">
-          Sair
+        <box-bar>
+          <bar id="barAttBases">Bases Atualizadas</bar>
+        </box-bar>
+        <div class="bases-count">  
+          <ion-icon title="Total de Bases Cadastradas" name="people-circle-outline"></ion-icon>
+          <p title="Total de Bases Cadastradas" id="totalBases">0</p>
+        </div>
+        <pre class="output-text-bases" 
+             id="outputBases"
+             readonly>
+          <div class="loading ">    
+            <p class="load "></p>    
+          </div>
+        </pre>
+        <button id="copyText">
+          Clique aqui para Copiar!
         </button>
       </tela>
       
@@ -60,16 +52,16 @@
 </body>
 
   <scripts>
-<!--     <script src="./login/login.js" defer></script> -->
+    <script src="/src/js/load-scripts.js" defer></script>
+    <script src="./text/loader-text.js" defer></script>
   </scripts>
   <autoscripts>
-    <script src="https://pingobras.glitch.me/src/js/links.js"></script>  
-    <script src="/src/js/load-scripts.js" defer></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://pingobras.glitch.me/src/js/links.js"></script>
   </autoscripts>
   <autoscriptsuser>
-    <script src="user/load-scripts.js"></script>
+    <script src="/user/load-scripts.js"></script>
   </autoscriptsuser>
     <host>
     <script src="https://pingobras.glitch.me/src/js/load-host.js" defer></script>

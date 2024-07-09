@@ -13,20 +13,15 @@
     <link rel="stylesheet" href="/src/css/reset.css">
     
     
-  <title>BRASIL ETERNITY ATUALIZAR BASES</title>
+  <title>BRASIL ETERNITY ADD BASES</title>
   </head>  
   <body>
     <main>
       
       <tela>
-        <h2> Atualizar Base do Banco de Dados Simlinks</h2>
+        <h2> Adicionar Base ao Banco de Dados Simlinks</h2>
         <form>
           <p vermelho>indica campos obrigatórios (*) </p>
-          
-          <select id="bases-select">
-            <option value="default">Selecione Uma Base</option>
-          </select>
-          
           <label>link de imagem da base, tamanho de (512x171)</label>
           <input type="url"
                  id="thumbnail"
@@ -37,14 +32,14 @@
                  id="usuario"
                  placeholder="Insira o nome de usuário"
                  required>
-          
-          <label required>nome da base</label>
-          <input type="text"
-                 id="baseNome"
-                 placeholder="Insira o nome da base"
+
+          <label required>simlink da base</label>
+          <input type="url"
+                 id="simlink"
+                 placeholder="Insira o simlink da base "
                  required>
           
-          <button type="submit">Atualizar</button>
+          <button type="submit">Cadastrar</button>
         </form>
     
         <h2>Previsualizar: </h2>
@@ -79,11 +74,14 @@
 
   <scripts>
     <script src="/src/js/load-scripts.js" defer></script>
-    <script src="/bases/atualizar/atualizar-bases.js" defer></script>
+    <script src="/user/bases/add/send-bases.js" defer></script>
   </scripts>
   <autoscripts>
     <script src="https://pingobras.glitch.me/src/js/links.js"></script>  
   </autoscripts>
+  <autoscriptsuser>
+    <script src="/user/load-scripts.js"></script>
+  </autoscriptsuser>
     <host>
     <script src="https://pingobras.glitch.me/src/js/load-host.js" defer></script>
     </host>

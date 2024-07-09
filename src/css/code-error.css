@@ -89,13 +89,13 @@ box-bar bar {
   width: 25%;
   display: block;
   position: relative;
-  right: 10px;
   animation: bar-loading-animation 7.5s infinite linear;
   -webkit-animation: bar-loading-animation 7.5s infinite linear;
   border-radius: 25px;
   text-align: center;
   color: white;
   font-weight: bold;
+  transition: 0.3s ease-in-out;
 }
 
 @keyframes bar-loading-animation {
