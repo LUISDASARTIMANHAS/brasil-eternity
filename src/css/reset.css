@@ -322,6 +322,9 @@ box-bar bar {
 }
 
 @media (max-width: 768px) {
+  *{
+    font-size: 12px;
+  }
   main tela li {
     max-width: 85%;
   }
@@ -330,9 +333,11 @@ box-bar bar {
     max-width: 212px;
   }
   button,
+  a,
+  header a,
   .btn {
     padding: 4px;
-    font-size: 16px;
+    font-size: 12px;
   }
 }
 

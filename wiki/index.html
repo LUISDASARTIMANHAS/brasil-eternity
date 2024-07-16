@@ -1,64 +1,65 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fórum/Wiki</title>
+    <link rel="stylesheet" href="/wiki/wiki.css">
+</head>
+<body>
+    <header>
+        <div class="breadcrumb">
+            <span>Fórum > Perguntas > Escrever</span>
+        </div>
+        <div class="user-header">
+            <img src="usuario.jpg" alt="Foto do Usuário">
+            <div class="user-info">
+                <h2>Nome do Usuário</h2>
+                <p>Localização: Cidade, País</p>
+            </div>
+        </div>
+    </header>
 
-  <head>
-
-    <meta charset="utf-8" />
-<!--     <meta http-equiv="Refresh" content="120"> -->
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload">
-
-    <link rel="icon" href="https://cdn.glitch.global/5817ad45-950e-4225-9b84-8f4348004350/Brasil-Eternity-image.jpg?v=1705932727089" />
-    <links></links>
-    <link rel="stylesheet" href="./src/css/reset.css">
-    <link rel="stylesheet" href="./wiki/wiki.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-    
-  <title>BRASIL ETERNITY WIKI</title>
-  </head>  
-  <body>
-    <main class="wiki">
-      <section class="menu menu-wiki">
-        <nav>
-        <h1>Menu</h1>
-        <button>
-          Home
-        </button>
-        <button>
-         Gerenciar Posts
-        </button>
-        <button>
-          Comentarios
-        </button>
+    <div class="container">
+        <nav class="sidebar">
+            <ul>
+                <li><a href="#">Início</a></li>
+                <li><a href="#">Categorias</a></li>
+                <li><a href="#">Usuários</a></li>
+                <li><a href="#">Configurações</a></li>
+            </ul>
         </nav>
-        
-        <nav class="links">
-          <a>post#01</a>
-        </nav>
-      </section>
 
-               
-    </main>
-        <footer>
-          <div id="direitos" class="direitos">
-            <div class="loading ">
-              <p class="load "></p>
-            </div> 
-          </div>
-        </footer>
+        <main class="content">
+            <div class="post">
+                <h2>Título do Post</h2>
+                <p>Descrição do post. O usuário precisa entrar no post para ver as mensagens.</p>
+                <a href="#">Ver Mensagens</a>
+            </div>
+            <div class="post">
+                <h2>Título do Post</h2>
+                <p>Descrição do post. O usuário precisa entrar no post para ver as mensagens.</p>
+                <a href="#">Ver Mensagens</a>
+            </div>
+            <!-- Adicione mais posts conforme necessário -->
+        </main>
+
+        <aside class="online-users">
+            <h3>Usuários Online</h3>
+            <ul>
+                <li>
+                    <img src="usuario1.jpg" alt="Foto do Usuário">
+                    <span>Nome do Usuário 1</span>
+                </li>
+                <li>
+                    <img src="usuario2.jpg" alt="Foto do Usuário">
+                    <span>Nome do Usuário 2</span>
+                </li>
+                <!-- Adicione mais usuários conforme necessário -->
+            </ul>
+        </aside>
+    </div>
+
+    <script src="scripts.js"></script>
 </body>
-
-  <scripts>
-    <script src="/src/js/load-scripts.js" defer></script>
-  </scripts>
-  <autoscripts>
-    <script src="https://pingobras.glitch.me/src/js/load-scripts.js"></script>
-    <script src="https://pingobras.glitch.me/src/js/links.js"></script>    
-  </autoscripts>
-    <host>
-    <script src="https://pingobras.glitch.me/src/js/load-host.js" defer></script>
-    </host>
 </html>

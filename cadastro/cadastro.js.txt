@@ -129,34 +129,7 @@ function preview() {
 }
 
 function cadastroMessage(msg) {
-  const url = "https://pingobras-sg.glitch.me/api/brasilEternity/mensagem";
-  const payload = {
-    titulo: "CADASTRO/BRASIL ETERNITY",
-    mensagem: msg,
-  };
-  const options = {
-    method: "POST",
-    mode: "cors",
-    headers: {
-      "content-type": "application/json;charset=utf-8",
-      Authorization: genTokenEncodeBase64("BRASIL ETERNITY CLIENT","brasil-eternity&route=api"),
-    },
-    body: JSON.stringify(payload),
-  };
-
-  fetch(url, options)
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        return response.text();
-      }
-    })
-    .then((data) => {
-      console.log("DATA RESPONSE: ");
-      console.log(data);
-    })
-    .catch((error) => console.debug(error));
+    window.brasil_Eternity_message("LOGIN",msg,"BRASIL ETERNITY CLIENT");
 }
 
 function onError(error) {

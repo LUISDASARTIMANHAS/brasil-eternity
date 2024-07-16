@@ -4,7 +4,6 @@
   <head>
 
     <meta charset="utf-8" />
-<!--     <meta http-equiv="Refresh" content="60"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload">
@@ -35,14 +34,20 @@
   </head>  
   <body>
     <header>
+      <div>
+        <p>Estado: <js id="labelRegion">Procurando...</js></p>
+        <img alt="Contador de Acessos"
+           -src="https://visitcount.itsvg.in/api?id=BRASIL-ETERNITY&label=Acessos&pretty=false" />
+      </div>
+
       <a href="./wa" 
          target="_blank"
          title="Grupo do WhatsApp">
         <ion-icon name="logo-whatsapp">Grupo do WhatsApp</ion-icon>
       </a>
       
-      <a disabled
-         -href="/votacao"
+      <a 
+         href="/votacao"
          title="Votação para melhorias do forum da nossa comunidade!">
         <ion-icon name="flag-outline">Votação</ion-icon>
         Votação
@@ -55,9 +60,8 @@
         Wiki
       </a>
       
-      <a class="btn-header"
-              href="./login"
-              title="Entrar na sua conta">
+      <a href="./login"
+         title="Entrar na sua conta">
         <ion-icon name="log-in-outline">Login</ion-icon>
         Login
       </a>
@@ -89,8 +93,8 @@
 </body>
 
   <scripts>
-    <script src="./src/js/offline.js" defer></script>
-    <script src="./src/js/loader-scripts.js" defer></script>
+    <script src="/src/js/offline.js" defer></script>
+    <script src="/src/js/load-scripts.js" defer></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   </scripts>

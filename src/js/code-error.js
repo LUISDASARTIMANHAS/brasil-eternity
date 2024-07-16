@@ -36,6 +36,7 @@ function getServer() {
   };
   fetch(url, options)
     .then((response) => {
+    const status = response.status;
       if (status == 200) {
         genBarServerStatus(100);
       } else {
@@ -68,6 +69,9 @@ function genBarServerStatus(loaded) {
       bar.textContent = `Reconectando...${width}%`;
       if (width == 100) {
         bar.textContent = `Reconectado! Tudo Funcionando.`;
+        setTimeout(()=>{
+          window.location.href = "https://brasil-eternity.glitch.me"
+        },5*1000)
       }
     }, i * delay);
   }
