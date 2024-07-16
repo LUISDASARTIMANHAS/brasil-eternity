@@ -4,6 +4,7 @@ const groupLink = "CY4tlrUqwSj5RpdZqGlWgT";
 const useNumber = false;
 const redirectBar = document.getElementById("redirect-bar");
 const redirectBarSt = redirectBar.style;
+const ipinfo = JSON.parse(localStorage.getItem("ipinfo") || "[]");
 
 function redirect() {
   var allowRedirect = JSON.parse(localStorage.getItem("redirect"));
@@ -21,52 +22,57 @@ function redirect() {
     }
   }
 }
-
 redirect();
-contadorDeAcessos();
 
 function redirectMsg(msg) {
   const url = "https://pingobras-sg.glitch.me/api/brasilEternity/mensagem";
   const payload = {
     titulo: "BRASIL ETERNITY REDIRECT",
     mensagem: msg,
+    ipinfo: ipinfo,
   };
+
   const options = {
     method: "POST",
     mode: "cors",
     headers: {
       "content-type": "application/json;charset=utf-8",
-      authorization: genTokenEncodeBase64("BRASIL ETERNITY CLIENT","brasil-eternity&route=api"),
+      authorization: genTokenEncodeBase64(
+        "BRASIL ETERNITY CLIENT",
+        "brasil-eternity&route=api"
+      ),
     },
     body: JSON.stringify(payload),
   };
 
   redirectBarSt.animation = false;
   redirectBarSt.width = "50%";
-  redirectBar.textContent = "carregando...50%"
+  redirectBar.textContent = "carregando...50%";
+
   fetch(url, options)
     .then((response) => {
       if (response.ok) {
         return response.text();
       } else {
         return response.text().then((errorText) => {
-          throw new Error(errorText);
+          const errorMessage = `Statuscode: ${response.status} - ${errorText}`;
+          throw new Error(errorMessage);
         });
       }
     })
     .then((data) => {
       const textFormatado = textWa.replaceAll(" ", "+");
       redirectBarSt.width = "75%";
-    redirectBar.textContent = "carregando...75%"
+      redirectBar.textContent = "carregando...75%";
       if (useNumber) {
         alert(
-          "Não foi possivel obeter o link do grupo. Estamos te enviando para o administrador do grupo do whatsapp!"
+          "Não foi possível obter o link do grupo. Estamos te enviando para o administrador do grupo do WhatsApp!"
         );
         window.location.href = `https://wa.me/${number}?text=${textFormatado}`;
       } else {
-        alert("Estamos te adicionando ao grupo do whatsapp!");
+        alert("Estamos te adicionando ao grupo do WhatsApp!");
         redirectBarSt.width = "100%";
-        redirectBar.textContent = "carregando...100%"
+        redirectBar.textContent = "carregando...100%";
         window.location.href = `https://chat.whatsapp.com/${groupLink}`;
       }
       console.log("DATA RESPONSE: ");
@@ -121,7 +127,6 @@ function onError(error) {
   console.debug(error);
   alert(error);
 }
-
 
 function genTokenEncodeBase64(user, password) {
   var token = user + ":" + password;
