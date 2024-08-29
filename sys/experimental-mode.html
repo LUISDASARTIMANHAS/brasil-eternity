@@ -14,46 +14,24 @@
     <link rel="stylesheet" href="/src/css/reset.css">
     
     
-  <title>BRASIL ETERNITY BASES</title>
+  <title>BRASIL ETERNITY EXPERIMENTAL MODE</title>
   </head>  
   <body>
     <header>
-      <a href="bases/finder"
+      <a href="/"
          class="btn">
-        Procurar Bases
+        <ion-icon name="home-outline">Home</ion-icon>
+        Home
       </a>
       
-      <a href="bases/add"
-         class="btn">
-        Adicionar Base
-      </a>
-      
-      <a href="bases/atualizar"
-         class="btn">
-        Atualizar Base
-      </a>
-      
-      <a href="bases/text"
-         class="btn">
-        Gerar Texto
-      </a>
     </header>
     <main>
       
       <tela>
-        <h2> Banco de Dados Simlinks</h2>
-        
-        <div class="bases-count">  
-          <ion-icon title="Total de Bases Cadastradas" name="people-circle-outline"></ion-icon>
-          <p title="Total de Bases Cadastradas" id="totalBases">0</p>
-        </div>
-        
-        <ul id="autoloadBases"> 
-<!--           carregado automaticamente -->
-          <div class="loading ">
-              <p class="load "></p>
+        <h1> Base</h1>
+          <div class="loading">
+              <p class="load rgb"></p>
             </div> 
-        </ul>
         
       </tela>
       
@@ -68,8 +46,10 @@
 </body>
 
   <scripts>
+    <script>
+      localStorage.setItem("experimentalMode",true);
+    </script>
 <!--     <script src="/src/js/load-scripts.js" defer></script> -->
-    <script src="/user/bases/loader-bases.js" defer></script>
   </scripts>
   <autoscripts>
     <script src="https://pingobras.glitch.me/src/js/ip-info.js" defer></script>
@@ -78,9 +58,6 @@
     <script src="https://pingobras.glitch.me/src/js/links.js"></script> 
     <script src="https://pingobras.glitch.me/src/js/load-scripts.js"></script>
   </autoscripts>
-  <autoscriptsuser>
-    <script src="/user/load-scripts.js"></script>
-  </autoscriptsuser>
     <host>
     <script src="https://pingobras.glitch.me/src/js/load-host.js" defer></script>
     </host>

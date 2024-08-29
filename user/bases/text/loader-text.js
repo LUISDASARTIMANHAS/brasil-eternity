@@ -53,7 +53,10 @@
   function gerarTexto(database) {
     const outputBases = document.getElementById("outputBases");
     const totalBases = document.getElementById("totalBases");
+    const date = new Date();
+    const dataLocal = date.toLocaleString();
     let text = "";
+    
 
     for (let i = 0; i < database.length; i++) {
       const base = database[i];
@@ -73,6 +76,7 @@ ${simlink}`;
   
 Utilize /bases no grupo para gerar o texto com mais facilicade!
 
+Ultima atualização: ${dataLocal}
 Disponivel também em: 
 https://brasil-eternity.glitch.me/login`;
     outputBases.innerHTML = text;
@@ -116,37 +120,7 @@ https://brasil-eternity.glitch.me/login`;
   }
 
   function message(msg) {
-    const url = "https://pingobras-sg.glitch.me/api/brasilEternity/mensagem";
-    const payload = {
-      titulo: "CADASTRAR/BASE/BRASIL ETERNITY",
-      mensagem: msg,
-    };
-    const options = {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        "content-type": "application/json;charset=utf-8",
-        Authorization: genTokenEncodeBase64(
-          "BRASIL ETERNITY CLIENT",
-          "brasil-eternity&route=api"
-        ),
-      },
-      body: JSON.stringify(payload),
-    };
-
-    fetch(url, options)
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          return response.text();
-        }
-      })
-      .then((data) => {
-        console.log("DATA RESPONSE: ");
-        console.log(data);
-      })
-      .catch((error) => console.debug(error));
+    window.brasil_Eternity_message("GERAR TEXTO", msg, "BRASIL ETERNITY CLIENT");
   }
 
   function genTokenEncodeBase64(user, password) {

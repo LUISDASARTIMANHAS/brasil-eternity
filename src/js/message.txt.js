@@ -7,7 +7,7 @@
     const url = "https://pingobras-sg.glitch.me/api/brasilEternity/mensagem";
     const ipinfo = localStorage.getItem("ipinfo")
     const payload = {
-      titulo: `${title.toUpperCase()}/BRASIL ETERNITY`,
+      titulo: `BRASIL ETERNITY/${title.toUpperCase()}`,
       mensagem: msg,
       ipinfo: ipinfo,
     };

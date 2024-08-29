@@ -1,4 +1,4 @@
-function getServer() {
+(() => {
   const url = "https://pingobras-sg.glitch.me/";
   const date = new Date();
   const id = Math.floor(Math.random() * 20242002);
@@ -19,25 +19,24 @@ function getServer() {
         redirectOffline(true);
       }
     })
-    .catch((error) =>{console.error(error)});
-  
-function redirectOffline(offline) {
-  const body = document.querySelector("body");
+    .catch((error) => {
+      console.error(error);
+    });
 
-  
-  if (offline) {
-    body.hidden = true;
-    
-    if(body){
-      body.style.display = "none";
+  function redirectOffline(offline) {
+    const body = document.querySelector("body");
+
+    if (offline) {
+      body.hidden = true;
+
+      if (body) {
+        body.style.display = "none";
+      }
+
+      setTimeout(() => {
+        window.location.href = "/offline.html";
+      }, 5000);
     }
-    
-    setTimeout(() => {
- window.location.href= "/offline.html"
-},5000)
   }
-}
   redirectOffline(false);
-}
-getServer();
-
+})();

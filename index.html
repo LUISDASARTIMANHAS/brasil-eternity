@@ -34,30 +34,12 @@
   </head>  
   <body>
     <header>
-      <div>
         <p>Estado: <js id="labelRegion">Procurando...</js></p>
-        <img alt="Contador de Acessos"
-           -src="https://visitcount.itsvg.in/api?id=BRASIL-ETERNITY&label=Acessos&pretty=false" />
-      </div>
 
       <a href="./wa" 
          target="_blank"
          title="Grupo do WhatsApp">
         <ion-icon name="logo-whatsapp">Grupo do WhatsApp</ion-icon>
-      </a>
-      
-      <a 
-         href="/votacao"
-         title="Votação para melhorias do forum da nossa comunidade!">
-        <ion-icon name="flag-outline">Votação</ion-icon>
-        Votação
-      </a>
-      
-      <a disabled
-         -href="./wiki"
-         title="Wiki Feita pela nossa comunidade!">
-        <ion-icon name="globe-outline">Wiki</ion-icon>
-        Wiki
       </a>
       
       <a href="./login"
@@ -67,6 +49,21 @@
       </a>
     </header>
     <main>
+      <div class="container">
+        <button
+                onclick="redirectUrl('/votacao')"
+                title="Votação para melhorias do forum da nossa comunidade!">
+        <ion-icon name="flag-outline">Votação</ion-icon>
+        Votação
+      </button>
+        
+        <button
+         onclick="redirectUrl(./wiki')"
+         title="Wiki Feita pela nossa comunidade!">
+        <ion-icon name="globe-outline">Wiki</ion-icon>
+        Wiki (Beta)
+      </button>
+      </div>
 
       <tela class="copy copyright">
         <p>Tire dúvidas com quem sabe, forneça informações, sejam leves e bom hacker </p>
@@ -100,8 +97,8 @@
   </scripts>
   <autoscripts>
     <script src="https://pingobras.glitch.me/src/js/ip-info.js" defer></script>
-    <script src="https://pingobras.glitch.me/src/js/load-scripts.js"></script>
-    <script src="https://pingobras.glitch.me/src/js/links.js"></script>    
+    <script src="https://pingobras.glitch.me/src/js/load-scripts.js" defer></script>
+    <script src="https://pingobras.glitch.me/src/js/links.js" defer></script>    
   </autoscripts>
     <host>
     <script src="https://pingobras.glitch.me/src/js/load-host.js" defer></script>

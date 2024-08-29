@@ -1,3 +1,5 @@
+window.addEventListener("load", getBases);
+
 function getBases() {
   const url = "https://pingobras-sg.glitch.me/api/brasil-eternity/bases";
   const date = new Date();
@@ -7,7 +9,10 @@ function getBases() {
     mode: "cors",
     headers: {
       "content-type": "application/json;charset=utf-8",
-      Authorization: genTokenEncodeBase64("BRASIL ETERNITY CLIENT","brasil-eternity&route=api"),
+      Authorization: genTokenEncodeBase64(
+        "BRASIL ETERNITY CLIENT",
+        "brasil-eternity&route=api"
+      ),
       key: date.getUTCHours() * date.getFullYear() * id,
       id: id,
     },
@@ -32,7 +37,6 @@ function getBases() {
     })
     .catch((error) => onError(error));
 }
-getBases();
 
 function renderBases(database) {
   const autoloadBases = document.getElementById("autoloadBases");
@@ -45,12 +49,21 @@ function renderBases(database) {
     var liElement = document.createElement("li");
     var divElementCard = document.createElement("div");
     var imgElementElement = document.createElement("img");
-     var pElementUsuario = document.createElement("p");
+    var divQrCodeElementElement = document.createElement("div");
+    var pElementUsuario = document.createElement("p");
     var pElementBase = document.createElement("p");
     var divElementSimlink = document.createElement("div");
     var ioniconElementSimlink = document.createElement("ion-icon");
     var pElementSimlink = document.createElement("p");
     var aElementSimlink = document.createElement("a");
+    let qrCodeconfig = {
+      text: base.simlink || "/",
+      width: 128,
+      height: 128,
+      colorDark: "#000000",
+      colorLight: "#ff0000",
+      correctLevel: window.QRCode.CorrectLevel.H, // Nível de correção de erro
+    };
 
     //Configurações da img
     if (base.thumbnail) {
@@ -62,9 +75,15 @@ function renderBases(database) {
       );
     }
     imgElementElement.setAttribute("alt", "Icone da Base");
+    imgElementElement.setAttribute("class", "icone-base");
 
-    //Configurações do p base e do p usuario 
-    pElementUsuario.innerHTML = `Usuário: ${base.user}`
+    //Configurações da img qrcode
+    new window.QRCode(divQrCodeElementElement, qrCodeconfig);
+    divQrCodeElementElement.setAttribute("title", "QrCode da Base");
+    divQrCodeElementElement.setAttribute("class", "qrcode");
+
+    //Configurações do p base e do p usuario
+    pElementUsuario.innerHTML = `Usuário: ${base.user}`;
     pElementBase.innerHTML = `Base: ${base.name}`;
 
     //Configurações do ion icon
@@ -91,6 +110,8 @@ function renderBases(database) {
     divElementSimlink.appendChild(aElementSimlink);
 
     divElementCard.appendChild(imgElementElement);
+    divElementCard.appendChild(divQrCodeElementElement);
+
     divElementCard.appendChild(pElementUsuario);
     divElementCard.appendChild(pElementBase);
     divElementCard.appendChild(divElementSimlink);
@@ -110,3 +131,19 @@ function genTokenEncodeBase64(user, password) {
   var encodedToken = btoa(token);
   return "Basic " + encodedToken;
 }
+
+// <li>
+//   <div class="card">
+//       <img src="https://link.hackersthegame.com/images/Hackers_title_512.png" alt="Icone da Base">
+// <img src="qrcode" alt="qrcode da Base">
+//       <p>Usuário: undefined</p>
+//       <p>Base: [77]&lt;(^^)&gt;</p>
+//       <div class="simlink">
+//         <ion-icon title="Simlink da Base, basta clicar para fazer o teste" role="img" class="md hydrated" name="link-outline"></ion-icon>
+// <p>SimLink: </p>
+//         <a href="https://link.hackersthegame.com/simlink.php?p=4518178&amp;t=8773286&amp;c=173711&amp;q=565&amp;s=322" target="_blank">
+//         Click Here
+//         </a>
+//       </div>
+//   </div>
+// </li>
