@@ -9,6 +9,24 @@
   color: red;
 }
 
+.container button,
+.custom-button {
+  background: #ffcc00; /* Cor de fundo do botão */
+  color: black; /* Cor do texto */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.container button,
+.custom-button:hover {
+  background: #ffaa00; /* Cor de fundo ao passar o mouse */
+  transition: all 1s ease-out;
+}
+
 button[disabled],
 .btn-disabled,
 [disabled],
@@ -179,7 +197,7 @@ main .redirect {
   transition: all 0.3s ease-out;
 }
 
-main ul img {
+main ul img.icone-base {
   max-height: 171px;
   max-width: 512px;
   min-width: 200px;
@@ -303,6 +321,12 @@ box-bar bar {
   transition: all 1s ease-out;
 }
 
+.qrcode {
+  min-width: 128px;
+  min-height: 128px;
+  margin: 10px;
+}
+
 @keyframes bar-loading-animation {
   0% {
     right: 0%;
@@ -322,7 +346,7 @@ box-bar bar {
 }
 
 @media (max-width: 768px) {
-  *{
+  * {
     font-size: 12px;
   }
   main tela li {
@@ -366,9 +390,10 @@ userinfo {
   flex-direction: row;
   flex-wrap: wrap;
   align-content: center;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   gap: 5px;
+  min-width: 35%;
 }
 
 userinfo .logo {
@@ -392,4 +417,9 @@ userinfo .logo {
 }
 h2:before {
   background-image: none;
+}
+
+.container {
+  text-align: center;
+  margin-top: 20px;
 }

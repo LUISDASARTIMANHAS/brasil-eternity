@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fórum/Wiki</title>
-    <link rel="stylesheet" href="/wiki/wiki.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fórum/Wiki</title>
+  <link rel="stylesheet" href="/wiki/wiki.css">
+  <link rel="stylesheet" href="/src/css/reset.css">
 </head>
 <body>
     <header>
         <div class="breadcrumb">
-            <span>Fórum > Perguntas > Escrever</span>
+            <span>Fórum > Início </span>
         </div>
-        <div class="user-header">
-            <img src="usuario.jpg" alt="Foto do Usuário">
+        <div class="user-header" hidden>
+            <img src="https://w7.pngwing.com/pngs/798/436/png-transparent-computer-icons-user-profile-avatar-profile-heroes-black-profile.png" alt="Foto do Usuário">
             <div class="user-info">
-                <h2>Nome do Usuário</h2>
+                <h2>Not found</h2>
                 <p>Localização: Cidade, País</p>
             </div>
         </div>
     </header>
-
-    <div class="container">
+  
+        <main class="main-wiki">
         <nav class="sidebar">
             <ul>
                 <li><a href="#">Início</a></li>
@@ -30,8 +31,8 @@
             </ul>
         </nav>
 
-        <main class="content">
-            <div class="post">
+          <section class="container-posts">
+          <div class="post">
                 <h2>Título do Post</h2>
                 <p>Descrição do post. O usuário precisa entrar no post para ver as mensagens.</p>
                 <a href="#">Ver Mensagens</a>
@@ -42,24 +43,24 @@
                 <a href="#">Ver Mensagens</a>
             </div>
             <!-- Adicione mais posts conforme necessário -->
-        </main>
+          </section>
 
         <aside class="online-users">
             <h3>Usuários Online</h3>
             <ul>
                 <li>
-                    <img src="usuario1.jpg" alt="Foto do Usuário">
-                    <span>Nome do Usuário 1</span>
+                    <img src="https://w7.pngwing.com/pngs/798/436/png-transparent-computer-icons-user-profile-avatar-profile-heroes-black-profile.png" alt="Foto do Usuário">
+                    <span>Admin</span>
                 </li>
                 <li>
-                    <img src="usuario2.jpg" alt="Foto do Usuário">
+                    <img src="https://w7.pngwing.com/pngs/798/436/png-transparent-computer-icons-user-profile-avatar-profile-heroes-black-profile.png" alt="Foto do Usuário">
                     <span>Nome do Usuário 2</span>
                 </li>
                 <!-- Adicione mais usuários conforme necessário -->
             </ul>
         </aside>
-    </div>
+        </main>
 
-    <script src="scripts.js"></script>
+    <script src="/wiki/wiki.js"></script>
 </body>
 </html>

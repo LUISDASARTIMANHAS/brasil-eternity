@@ -1,21 +1,21 @@
-(() => {
+window.addEventListener("load", () => {
   const form = document.getElementById("form");
+  const btnEntrar = document.getElementById("btnEntrar");
   const formCode = document.getElementById("formCode");
   const msgError = document.getElementById("msgError");
   const msgSuccess = document.getElementById("msgSuccess");
   const cookieContinuarConectado = getCookie("continuarConectado");
   const lastDataUser = JSON.parse(localStorage.getItem("dataUser"));
 
+  if (cookieContinuarConectado == "true" && lastDataUser) {
+    loginMessage(`Bem vindo de volta ${lastDataUser.usuario}!`);
+    window.location.href = "/user";
+  }
+
   form.addEventListener("submit", stopDefAction);
   formCode.addEventListener("submit", stopDefActionSendCode);
-
-  delay(3, () => {
-    if (cookieContinuarConectado == "true" && lastDataUser) {
-      loginMessage(`Bem vindo de volta ${lastDataUser.usuario}!`);
-      window.location.href = "/user";
-    }
-  });
-
+  btnEntrar.disabled = false;
+  
   function stopDefAction(event) {
     event.preventDefault();
     getData();
@@ -220,8 +220,4 @@
       return email;
     }
   }
-
-  function delay(s, callback) {
-    setTimeout(callback, s*1000);
-  }
-})();
+});
