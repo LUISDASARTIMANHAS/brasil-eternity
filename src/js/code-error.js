@@ -70,7 +70,7 @@ function genBarServerStatus(loaded) {
       if (width == 100) {
         bar.textContent = `Reconectado! Tudo Funcionando.`;
         setTimeout(()=>{
-          window.location.href = "https://brasil-eternity.glitch.me"
+          window.location.href = "https://brasil-eternity.com"
         },5*1000)
       }
     }, i * delay);

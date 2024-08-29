@@ -12,7 +12,7 @@
     }
 
     setTimeout(() => {
-      window.location.href = "/manutencao.html";
+      window.location.href = "/sys/manutencao.html";
     }, 3000);
   }
 })();
