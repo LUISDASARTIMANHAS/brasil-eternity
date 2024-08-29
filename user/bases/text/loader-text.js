@@ -78,7 +78,7 @@ Utilize /bases no grupo para gerar o texto com mais facilicade!
 
 Ultima atualização: ${dataLocal}
 Disponivel também em: 
-https://brasil-eternity.glitch.me/login`;
+https://brasil-eternity.com/login`;
     outputBases.innerHTML = text;
     totalBases.textContent = database.length;
   }

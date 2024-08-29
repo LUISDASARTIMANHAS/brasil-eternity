@@ -1,6 +1,6 @@
 (() => {
   const autoscripts = document.querySelector("autoscripts");
-  const fonteUser = "https://brasil-eternity.glitch.me/src/js/";
+  const fonteUser = "https://brasil-eternity.com/src/js/";
   const srcsUser = [
     "manutencao-redirect",
     "functions",

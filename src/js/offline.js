@@ -34,7 +34,7 @@
       }
 
       setTimeout(() => {
-        window.location.href = "/offline.html";
+        window.location.href = "/sys/offline.html";
       }, 5000);
     }
   }
