@@ -34,23 +34,39 @@
   </head>  
   <body>
     <header>
+      <div class="container-info">
         <p>Estado: <js id="labelRegion">Procurando...</js></p>
-
-      <a href="./wa" 
-         target="_blank"
-         title="Grupo do WhatsApp">
-        <ion-icon name="logo-whatsapp">Grupo do WhatsApp</ion-icon>
-      </a>
+      </div>
       
-      <a href="./login"
-         title="Entrar na sua conta">
-        <ion-icon name="log-in-outline">Login</ion-icon>
-        Login
-      </a>
+      <div class="conteiner-buttons">
+        <a href="./ranking"
+           title="Ranking de Melhores Bases e Jogadores">
+          <ion-icon name="stats-chart-outline">ranking</ion-icon>
+          Ranking
+        </a>
+
+        <a href="./wa" 
+           target="_blank"
+           title="Grupo do WhatsApp">
+          <ion-icon name="logo-whatsapp">Grupo do WhatsApp</ion-icon>
+        </a>
+        
+        <a href="./contato"
+           title="Entrar em contato para uma sugestão ou duvida">
+          Contato
+        </a>
+
+        <a href="./login"
+           title="Entrar na sua conta">
+          <ion-icon name="log-in-outline">Login</ion-icon>
+          Login
+        </a>
+      </div>
+      
     </header>
     <main>
       <div class="container">
-        <button
+      <button
                 onclick="redirectUrl('/votacao')"
                 title="Votação para melhorias do forum da nossa comunidade!">
         <ion-icon name="flag-outline">Votação</ion-icon>
@@ -62,6 +78,13 @@
          title="Wiki Feita pela nossa comunidade!">
         <ion-icon name="globe-outline">Wiki</ion-icon>
         Wiki (Beta)
+      </button>
+        
+      <button
+                onclick="redirectUrl('/doacao')"
+                title="Mantenha o site e apoie os desenvolvedores!">
+        <ion-icon name="cafe-outline"></ion-icon>
+        Doe
       </button>
       </div>
 

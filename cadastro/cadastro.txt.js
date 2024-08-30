@@ -25,7 +25,7 @@ function verificar() {
   } else if (
     thumbnail !== "" &&
     thumbnail !== null &&
-    !inpPerfilIMG.startsWith("https://")
+    !thumbnail.startsWith("https://")
   ) {
     alert("Insira uma imagem de perfil Valida!");
   } else if (
