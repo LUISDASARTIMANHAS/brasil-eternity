@@ -51,7 +51,7 @@ function preview() {
   const baseSelecionada = selectBases.value;
   const base = pesqBase(bases, baseSelecionada);
 
-  previewUsuario.textContent = dataUser;
+  previewUsuario.textContent = dataUser.usuario;
   if (baseSelecionada == "default") {
     previewBase.textContent = "Selecione uma Base para Editar!";
   } else {
