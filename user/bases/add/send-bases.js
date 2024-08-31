@@ -1,4 +1,5 @@
 const form = document.querySelector("form");
+const dataUser = JSON.parse(localStorage.getItem("dataUser"));
 let baseName = null;
 
 form.addEventListener("submit", stopDefAction);
@@ -12,7 +13,6 @@ function stopDefAction(event) {
 function verificar() {
   const inpSimlink = document.getElementById("simlink");
   const inpThumbnail = document.getElementById("thumbnail");
-  const inpUsuario = document.getElementById("usuario");
   const thumbnail = inpThumbnail.value;
   let simlink = inpSimlink.value;
 
@@ -36,7 +36,7 @@ function verificar() {
     alert("A imagem precisa ser png ou jpg");
   } else {
     getBaseName(simlink,(baseNameFormated) => {
-      sendBase(baseNameFormated, inpUsuario.value, simlink, thumbnail);
+      sendBase(baseNameFormated, simlink, thumbnail);
     }); 
   }
 }
@@ -51,12 +51,12 @@ function preview() {
   const previewUsuario = document.getElementById("previewUsuario");
   const previewImg = document.getElementById("previewImg");
   const previewSimlink = document.getElementById("previewSimlink");
-  const inpUsuario = document.getElementById("usuario");
   const inpSimlink = document.getElementById("simlink");
   const inpThumbnail = document.getElementById("thumbnail");
   let simlink = inpSimlink.value;
   
 
+    previewUsuario.textContent = dataUser.usuario;
   if (
     simlink.startsWith("https://link.hackersthegame.com/simlink.php?")
   ) {
@@ -70,13 +70,7 @@ function preview() {
   }else{
     previewBase.textContent = "Not Found";
   }
-
-  if (inpUsuario.value == "") {
-    previewUsuario.textContent = "Not Found User";
-  } else {
-    previewUsuario.textContent = inpUsuario.value;
-  }
-
+  
   if (inpThumbnail.value == "") {
     previewImg.src =
       "https://link.hackersthegame.com/images/Hackers_title_512.png";
@@ -93,13 +87,13 @@ function preview() {
   }
 }
 
-function sendBase(base, user, simlink, thumbnail) {
+function sendBase(base, simlink, thumbnail) {
   const url = "https://pingobras-sg.glitch.me/api/brasil-eternity/bases";
   const date = new Date();
   const id = Math.floor(Math.random() * 20242002);
   const payloadLogin = {
     name: `『ᴮʳETER』${base}`,
-    user: user,
+    user: dataUser.usuario,
     simlink: simlink,
     thumbnail: thumbnail,
   };
