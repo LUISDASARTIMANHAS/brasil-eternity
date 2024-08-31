@@ -1,4 +1,5 @@
 const form = document.querySelector("form");
+const dataUser = JSON.parse(localStorage.getItem("dataUser"));
 const selectBases = document.getElementById("bases-select");
 let bases = [];
 
@@ -11,7 +12,6 @@ function stopDefAction(event) {
 }
 
 function verificar() {
-  const inpUsuario = document.getElementById("usuario");
   const inpThumbnail = document.getElementById("thumbnail");
   const baseSelecionada = selectBases.value;
   const base = pesqBase(bases, baseSelecionada);
@@ -19,8 +19,6 @@ function verificar() {
 
   if (baseSelecionada == "default") {
     alert("Selecione uma Base para Editar!");
-  } else if (inpUsuario.value == "" || inpUsuario.value == null) {
-    alert("Insira um Usuário ");
   } else if (
     thumbnail !== "" &&
     thumbnail !== null &&
@@ -34,12 +32,7 @@ function verificar() {
         "https://link.hackersthegame.com/images/Hackers_title_512.png";
     }
     getBaseName(base.simlink, (baseNameFormated) => {
-      atualizarBase(
-        baseSelecionada,
-        baseNameFormated,
-        inpUsuario.value,
-        thumbnail
-      );
+      atualizarBase(baseSelecionada, baseNameFormated, thumbnail);
     });
   }
 }
@@ -54,23 +47,17 @@ function preview() {
   const previewUsuario = document.getElementById("previewUsuario");
   const previewImg = document.getElementById("previewImg");
   const previewSimlink = document.getElementById("previewSimlink");
-  const inpUsuario = document.getElementById("usuario");
   const inpThumbnail = document.getElementById("thumbnail");
   const baseSelecionada = selectBases.value;
   const base = pesqBase(bases, baseSelecionada);
-  
+
+  previewUsuario.textContent = dataUser;
   if (baseSelecionada == "default") {
     previewBase.textContent = "Selecione uma Base para Editar!";
   } else {
-      getBaseName(base.simlink, (baseNameFormated) => {
-        previewBase.textContent = `『ᴮʳETER』${baseNameFormated}`;
-      });
-  }
-  
-  if (inpUsuario.value == "") {
-    previewUsuario.textContent = base.user || "Not Found User";
-  } else {
-    previewUsuario.textContent = inpUsuario.value;
+    getBaseName(base.simlink, (baseNameFormated) => {
+      previewBase.textContent = `『ᴮʳETER』${baseNameFormated}`;
+    });
   }
 
   if (inpThumbnail.value == "") {
@@ -90,15 +77,14 @@ function preview() {
   }
 }
 
-
-function atualizarBase(lastBase, base, user, thumbnail) {
+function atualizarBase(lastBase, base, thumbnail) {
   const url = "https://pingobras-sg.glitch.me/api/brasil-eternity/bases";
   const date = new Date();
   const id = Math.floor(Math.random() * 20242002);
   const payloadLogin = {
     lastBase: lastBase,
     name: `『ᴮʳETER』${base}`,
-    user: user,
+    user: dataUser.usuario,
     thumbnail: thumbnail,
   };
   const options = {
@@ -225,8 +211,7 @@ function getBaseName(simlink, callback) {
       const baseName = dom.title;
       const baseNameFormated = baseName
         .replace("SimLink to ", "")
-        .replace("'s network", "")
-        .replace("『ᴮʳETER』", "");
+        .replace("'s network", "");
       message("Nome da base obtido com sucesso!");
       callback(baseNameFormated);
     })
