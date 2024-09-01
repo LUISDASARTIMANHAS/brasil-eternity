@@ -1,5 +1,5 @@
 window.addEventListener("load", () => {
-  const url = "https://pingobras-sg.glitch.me/api/brasil-eternity/votacao";
+  const url = "https://pingobras-sg.glitch.me/api/brasil-eternity/ranking";
   const date = new Date();
   const id = Math.floor(Math.random() * 20242002);
   const options = {
@@ -36,13 +36,42 @@ window.addEventListener("load", () => {
     .catch((error) => onError(error));
 
   function renderVotacao(database) {
-    const table = document.querySelector("table");
+    const tabela = document.querySelector("table");
+    const autoloadRanking = document.getElementById("autoloadRanking");
 
-    table.innerHTML = "Todas As Bases do Ranking Foram Carregadas!";
+    autoloadRanking.innerHTML = "Todas As Bases do Ranking Foram Carregadas!";
     for (let i = 0; i < database.length; i++) {
       const base = database[i];
-      
-      table.appendChild();
+      const posicao = base.posicao;
+      const baseName = base.descricao;
+      const level = base.dataDeInicio;
+      const reputacao = base.dataDeTermino;
+      const dinheiro = base.status;
+      const bitcoin = base.inscritos;
+
+      var trLine = document.createElement("tr");
+      var tdElementPosicao = document.createElement("td");
+      var tdElementBaseName = document.createElement("td");
+      var tdElementLevel = document.createElement("td");
+      var tdElementReputacao = document.createElement("td");
+      var tdElementDinheiro = document.createElement("td");
+      var tdElementBitcoin = document.createElement("td");
+
+      tdElementPosicao.textContent = `${i+1}°`;
+      tdElementBaseName.textContent = baseName;
+      tdElementLevel.textContent = level;
+      tdElementReputacao.textContent = `${reputacao}`;
+      tdElementDinheiro.textContent = `$${dinheiro}`;
+      tdElementBitcoin.textContent = `B${bitcoin}`;
+
+      trLine.appendChild(tdElementPosicao);
+      trLine.appendChild(tdElementBaseName);
+      trLine.appendChild(tdElementLevel);
+      trLine.appendChild(tdElementReputacao);
+      trLine.appendChild(tdElementDinheiro);
+      trLine.appendChild(tdElementBitcoin);
+
+      tabela.appendChild(trLine);
     }
   }
 
@@ -56,23 +85,4 @@ window.addEventListener("load", () => {
     var encodedToken = btoa(token);
     return "Basic " + encodedToken;
   }
-
-//       <table>
-//           <tr>
-//             <th>Posição</th>
-//             <th>Base</th>
-//             <th>Level</th>
-//             <th>Poder</th>
-//             <th>Dinheiro</th>
-//             <th>Bitcoin</th>
-//           </tr>
-//           <tr>
-//             <td>1</td>
-//             <td>user</td>
-//             <td>101 </td>
-//             <td>10k</td>
-//             <td>5,345 Mi</td>
-//             <td>500 Mil</td>
-//           </tr>
-//     </table>
 });
