@@ -9,6 +9,19 @@
   color: red;
 }
 
+/* Estilo do fieldset */
+fieldset {
+    border: none;
+    padding: 0;
+}
+
+input[type="radio"] {
+  width: auto;
+  min-width: 10%;
+  margin-right: 10px;
+  transform: scale(1.2);
+}
+
 .container button,
 .custom-button {
   background: #ffcc00; /* Cor de fundo do botão */
@@ -112,7 +125,7 @@ header {
   user-select: none;
   align-content: center;
 }
-    
+
 header .conteiner-buttons {
   width: 100%;
   display: flex;
@@ -152,7 +165,9 @@ main {
 }
 
 main tela {
+  padding: 10px;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
@@ -164,7 +179,7 @@ main tela {
   border-style: solid;
   border-width: 2px;
   border-color: white;
-  overflow-x: hidden;
+  min-height: 50vh;
 }
 
 h1 {
@@ -182,15 +197,31 @@ main tela h2 {
   color: red;
 }
 
-main tela ul {
+main tela ul,
+main tela ol {
   max-width: 95%;
-  min-width: 50%;
+  min-width: 75%;
   list-style-type: upper-roman;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
   flex-wrap: wrap;
+  padding: 10px;
+}
+
+main tela ol {
+  list-style-type: decimal;
+  align-items: left;
+  text-align: left;
+  /*   background: red; */
+}
+
+main ul li,
+main ol li {
+  width: 100%;
+  padding: 10px;
+  border-radius: 25px;
 }
 
 main tela ul li .card p {
@@ -229,6 +260,10 @@ main ul .card {
   color: black;
 }
 
+main ul li .card {
+  border: 10px solid #95a5a6;
+}
+
 main ul .simlink {
   display: flex;
   justify-content: center;
@@ -238,14 +273,6 @@ main ul .simlink {
 
 main ul li .card .simlink p {
   width: auto;
-}
-
-main ul li {
-  width: 100%;
-  padding: 10px;
-  margin: 10px;
-  border-radius: 25px;
-  background-color: #95a5a6;
 }
 
 main tela .bases-count {
@@ -372,7 +399,7 @@ box-bar bar {
     min-width: 100px;
     max-width: 212px;
   }
-  
+
   button,
   a,
   header a,
@@ -380,8 +407,8 @@ box-bar bar {
     padding: 5px;
     font-size: 15px;
   }
-  
-  userinfo .logo{
+
+  userinfo .logo {
     min-width: 35px;
     max-width: 45px;
     min-height: 35px;

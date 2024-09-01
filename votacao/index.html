@@ -12,6 +12,7 @@
     <link rel="icon" href="https://cdn.glitch.global/5817ad45-950e-4225-9b84-8f4348004350/Brasil-Eternity-image.jpg?v=1705932727089" />
     <links></links>
     <link rel="stylesheet" href="/src/css/reset.css">
+    <link rel="stylesheet" href="/votacao/style.css">
     
     
   <title>BRASIL ETERNITY VOTAÇÃO</title>
@@ -28,28 +29,68 @@
     <main>
       
       <tela>
-        <h2> Votação</h2>
+        <h1>Sistema de Votação</h1>
         
-        <section class="container-vote-item">
-          <form>
-            <h2>Titulo da votação</h2>
-            
-            <p>Descrição e imagem dessa votação</p>
-            
-            <label for="html">1</label>
-            <br>
-            <input type="radio" id="html" name="fav_language" value="HTML">
-            
-            <label for="css">2</label>
-            <br>
-            <input type="radio" id="css" name="fav_language" value="CSS">
-            
-            <label for="javascript">outros?</label>
-            <input type="radio" id="javascript" name="fav_language" value="JavaScript">
-            
-            <button type="submit">Votar</button>
-          </form>
+        <section class="voting-section">
+          <div class="container-vote-item">
+              <form class="voting-form" data-voting-id="1">
+                  <h2>Título da Votação 1</h2>
+                  <p class="vote-description">Descrição e imagem dessa votação 1</p>
+                  <img src="caminho/para/imagem1.jpg" alt="Imagem da Votação 1">
+
+                  <fieldset>
+                      <legend>Escolha sua opção:</legend>
+
+                      <div class="vote-option">
+                          <input type="radio" id="v1_option1" name="vote1" value="option1">
+                          <label for="v1_option1">Opção 1</label>
+                      </div>
+
+                      <div class="vote-option">
+                          <input type="radio" id="v1_option2" name="vote1" value="option2">
+                          <label for="v1_option2">Opção 2</label>
+                      </div>
+
+                      <div class="vote-option">
+                          <input type="radio" id="v1_option3" name="vote1" value="option3">
+                          <label for="v1_option3">Outros</label>
+                      </div>
+                  </fieldset>
+
+                  <button type="submit">Votar</button>
+              </form>
+          </div>
+
+          <div class="container-vote-item">
+              <form class="voting-form" data-voting-id="2">
+                  <h2>Título da Votação 2</h2>
+                  <p class="vote-description">Descrição e imagem dessa votação 2</p>
+                  <img src="caminho/para/imagem2.jpg" alt="Imagem da Votação 2">
+
+                  <fieldset>
+                      <legend>Escolha sua opção:</legend>
+
+                      <div class="vote-option">
+                          <input type="radio" id="v2_option1" name="vote2" value="option1">
+                          <label for="v2_option1">Opção A</label>
+                      </div>
+
+                      <div class="vote-option">
+                          <input type="radio" id="v2_option2" name="vote2" value="option2">
+                          <label for="v2_option2">Opção B</label>
+                      </div>
+
+                      <div class="vote-option">
+                          <input type="radio" id="v2_option3" name="vote2" value="option3">
+                          <label for="v2_option3">Outros</label>
+                      </div>
+                  </fieldset>
+
+                  <button type="submit">Votar</button>
+              </form>
+          </div>
         </section>
+
 <!--         
         <ul id="autoloadBases"> 
           carregado automaticamente
@@ -71,7 +112,7 @@
 </body>
 
   <scripts>
-    <script src="/src/js/load-scripts.js" defer></script>
+<!--     <script src="/src/js/load-scripts.js" defer></script> -->
   </scripts>
   <autoscripts>
     <script src="https://pingobras.glitch.me/src/js/ip-info.js" defer></script>

@@ -211,7 +211,8 @@ function getBaseName(simlink, callback) {
       const baseName = dom.title;
       const baseNameFormated = baseName
         .replace("SimLink to ", "")
-        .replace("'s network", "");
+        .replace("'s network", "")
+        .replace("『ᴮʳETER』", "");
       message("Nome da base obtido com sucesso!");
       callback(baseNameFormated);
     })
