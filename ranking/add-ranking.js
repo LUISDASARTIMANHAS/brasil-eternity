@@ -26,7 +26,7 @@ function sendBaseRanking() {
   const baseSelecionada = selectBases.value;
   const payload = {
     posicao: selectPosicao.value,
-    base: baseSelecionada,
+    name: baseSelecionada,
     level: null,
     reputacao: inpReputacao.value,
     dinheiro: inpDinheiro.value,
