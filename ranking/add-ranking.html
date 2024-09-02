@@ -38,7 +38,7 @@
             <option value="">Selecione uma opção</option>
           </select>
           
-          <label for="selectPosicao">Posição</label>
+          <label required for="selectPosicao">Posição</label>
           <select required name="selectPosicao" id="selectPosicao">
             <option value="">Selecione uma posição</option>
             <option value="1">1</option>
@@ -53,34 +53,38 @@
             <option value="10">10</option>
           </select>
           
-<!--           <label for="level">Level</label>
+<!--      <label required for="level">Level</label>
           <input name="level"
                  type="number"
                  min="1"
+                 required
                  max="105"
                  id="level"
                  placeholder="Insira o level da base"> -->
           
-          <label for="reputacao">Reputação</label>
+          <label required for="reputacao">Reputação</label>
           <input name="reputacao"
                  type="number"
                  min="1"
+                 required
                  max="10000"
                  id="reputacao"
                  placeholder="Insira o reputação da base">
           
-          <label for="dinheiro">Dinheiro</label>
+          <label required for="dinheiro">Dinheiro</label>
           <input name="dinheiro"
                  type="number"
                  min="1"
+                 required
                  max="24000000"
                  id="dinheiro"
                  placeholder="Insira o dinheiro da base">
           
-          <label for="bitcoin">Bitcoin</label>
+          <label required for="bitcoin">Bitcoin</label>
           <input name="bitcoin"
                  type="number"
                  min="1"
+                 required
                  max="750000"
                  id="bitcoin"
                  placeholder="Insira o Bitcoin da base">

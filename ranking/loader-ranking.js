@@ -23,7 +23,7 @@ window.addEventListener("load", () => {
       } else {
         return response.text().then((errorText) => {
           throw new Error(
-            "Erro ao obter banco de dados da Votação: " + errorText
+            "Erro ao obter banco de dados de ranking: " + errorText
           );
         });
       }
@@ -39,15 +39,14 @@ window.addEventListener("load", () => {
     const tabela = document.querySelector("table");
     const autoloadRanking = document.getElementById("autoloadRanking");
 
-    autoloadRanking.innerHTML = "Todas As Bases do Ranking Foram Carregadas!";
     for (let i = 0; i < database.length; i++) {
       const base = database[i];
       const posicao = base.posicao;
-      const baseName = base.descricao;
-      const level = base.dataDeInicio;
-      const reputacao = base.dataDeTermino;
-      const dinheiro = base.status;
-      const bitcoin = base.inscritos;
+      const baseName = base.name;
+      const level = base.level;
+      const reputacao = base.reputacao;
+      const dinheiro = base.dinheiro;
+      const bitcoin = base.bitcoin;
 
       var trLine = document.createElement("tr");
       var tdElementPosicao = document.createElement("td");
@@ -73,6 +72,7 @@ window.addEventListener("load", () => {
 
       tabela.appendChild(trLine);
     }
+    autoloadRanking.innerHTML = "Todas As Bases do Ranking Foram Carregadas!";
   }
 
   function onError(error) {
