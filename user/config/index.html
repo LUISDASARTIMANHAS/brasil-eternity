@@ -17,59 +17,48 @@
   </head>  
   <body>
     <header class="copyright">
-      <a href="/user/bases"
-         class="btn">
-        Bases
-      </a>
-      
-      <a href="/user/config"
-         class="btn">
-        Configs
-      </a>
-      
-      <a -href="/wiki"
-         class="btn">
-        Wiki
-      </a>
     </header>
     <main>
       
       <tela class="copyright">
-        <h1>Área do Cliente</h1>
+        <h1>Configurações da Conta</h1>
         
-        <h2>TUTORIAL TAG CLA</h2>
-        <img src="https://cdn.glitch.global/5817ad45-950e-4225-9b84-8f4348004350/tutorial-unicodePad.jpg?v=1720521118948"
-             width="500"
-             height="500"
-             alt="tutorial unicodePad">
-        <p>galera meu celular não conseguiu copiar os símbolos do clã, pra quem enfrenta o mesmo problema que eu:
-        baixei o aplicativo UNICODPAD
-        </p>
-
-        <p>na lateral direita há um quadrado com os códigos de cada caracter, basta clicar e inserir os seguintes números de pesquisa:
-        </p>
+        <form>
+          <label required>Nome de Usuario</label>
+          <input type="text"
+                 required
+                 name="Username"
+                 id="Username"
+                 placeholder="Insira seu nome de usuário">
+          
+          <label required>Imagem de Perfil</label>
+          <input type="url"
+                 required
+                 name="imgdePerfil"
+                 id="imgdePerfil"
+                 placeholder="Insira uma Url de imagem png ou jpg">
+          
+          <button>
+            Alterar Dados
+          </button>
+        </form>
         
-        <p>
-        - para 『』U+3000
-        </p>
-        <p>
-        - para  B    U+1D20
-        </p>
-        <p>
-        - para   r    U+02B0
-        </p>
-
-        <p>
-        o nome ETER é com fonte comum.
-        </p>
-        <p>
-        obs: os códigos em si marcam apenas a coluna onde o caractere fica e não o próprio, ou seja, é necessário observar e encontrar o caracter desejado.
-        </p>
+        <br>
+        <hr>
+        <br>
         
-        <iframe width="100%" height="500" src="https://visitcount.itsvg.in/analytics/BRASIL-ETERNITY">
-         Seu navegador não suporta Este recurso!  
-        </iframe>
-        
+        <form id="deletarConta">
+          <p amarelo>Essa Ação e Irreversível!</p>
+          <label for="confirma">Eu concordo que esta ação e irreversível</label>
+          <input type="checkbox"
+                 id="confirma"
+                 name="confirma"
+                 required>
+          <br><br>
+          <button>
+            Deletar Conta!
+          </button>
+        </form>
       </tela>
       
     </main>
@@ -86,6 +75,8 @@
 </body>
 
   <scripts>
+    <script src="/user/config/alterar-dados-cadastrais.js" defer></script>
+    <script src="/user/config/deletar-conta.js" defer></script>  
   </scripts>
   <autoscripts>
     <script src="https://pingobras.glitch.me/src/js/links.js"></script>  
