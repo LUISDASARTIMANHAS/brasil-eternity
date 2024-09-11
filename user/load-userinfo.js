@@ -43,24 +43,30 @@ renderUserInfo();
 
 function loaderUserData() {
   const dataUser = JSON.parse(localStorage.getItem("dataUser"));
-  const labelSaldo = document.getElementById("saldo");
   const labelPerfilIcon = document.getElementById("perfilIcon");
   const labellogado = document.getElementById("logado");
+  const labelLastLogin = document.getElementById("lastLogin");
   var elements = document.querySelectorAll("[admin]");
+
 
   // banco de dados
   const userLoad = dataUser.usuario;
-  const saldoLoad = dataUser.saldo;
+  const userAccountAtualizado = dataUser.profileUpdated;
+  const userEmail = dataUser.email;
+  const lastLogin = dataUser.lastLogin;
   const imgLoad = dataUser.PerfilIMG;
-  const backgroundLoad = dataUser.UserBGCad;
-  const tokenLoad = dataUser.Token;
+  const userID = dataUser.userId;
+  const tokenLoad = dataUser.token;
+  const loginHistory = dataUser.loginHistory;
+  const themePreferences = dataUser.themePreferences;
+  const perfilPrivate = dataUser.perfilPrivate;
+  const languagePreferences = dataUser.languagePreferences;
   const admin = dataUser.type;
   const navg = navigator.appCodeName;
 
   console.log("Carregando dados....");
-  //account Setings
-  if (labelSaldo) {
-    labelSaldo.innerHTML = saldoLoad + ",00";
+  if (labelLastLogin) {
+    labelLastLogin.innerHTML = lastLogin || "Primeiro Acesso";
   }
   if (labellogado) {
     labellogado.innerHTML = `Olá 👋 ${userLoad}!`;

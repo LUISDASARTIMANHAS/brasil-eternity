@@ -6,6 +6,7 @@ window.addEventListener("load", () => {
   const msgSuccess = document.getElementById("msgSuccess");
   const cookieContinuarConectado = getCookie("continuarConectado");
   const lastDataUser = JSON.parse(localStorage.getItem("dataUser"));
+  const inpCode = document.getElementById("code");
 
   if (cookieContinuarConectado == "true" && lastDataUser) {
     loginMessage(`Bem vindo de volta ${lastDataUser.usuario}!`);
@@ -14,6 +15,11 @@ window.addEventListener("load", () => {
 
   form.addEventListener("submit", stopDefAction);
   formCode.addEventListener("submit", stopDefActionSendCode);
+  inpCode.addEventListener("input", () => {
+    if(inpCode.value.length > 5){
+      sendCode();
+    }
+  });
   btnEntrar.disabled = false;
   
   function stopDefAction(event) {
@@ -33,8 +39,7 @@ window.addEventListener("load", () => {
     const date = new Date();
     const id = Math.floor(Math.random() * 20242002);
     const payloadLogin = {
-      email: inpEmail.value,
-      type: "user",
+      email: inpEmail.value
     };
     const options = {
       method: "POST",
@@ -51,13 +56,12 @@ window.addEventListener("load", () => {
       body: JSON.stringify(payloadLogin),
     };
 
-    msgError.setAttribute("style", "display: none");
-    msgSuccess.innerHTML = "Aguardando Servidor....";
-    msgSuccess.setAttribute("style", "display: block");
+    formMessage("Aguardando Servidor...");
     loginMessage(` ${censurarEmail(inpEmail.value)} pediu um magic link!`);
     fetch(url, options)
       .then((response) => {
         if (response.ok) {
+          formMessage("Aguardando Código de Confirmação!");
           loginMessage(`Magic Link enviado com sucesso!`);
           return response.text();
         } else {
@@ -70,7 +74,7 @@ window.addEventListener("load", () => {
       .then((data) => {
         console.log("DATA RESPONSE: ");
         console.log(data);
-        alert(data);
+        formMessage(data);
         form.hidden = true;
         formCode.hidden = false;
       })
@@ -102,9 +106,7 @@ window.addEventListener("load", () => {
       body: JSON.stringify(payloadLogin),
     };
 
-    msgError.setAttribute("style", "display: none");
-    msgSuccess.innerHTML = "Aguardando Servidor....";
-    msgSuccess.setAttribute("style", "display: block");
+    formMessage("Aguardando Servidor...");
     loginMessage(
       `${censurarEmail(
         inpEmail.value
@@ -133,24 +135,8 @@ window.addEventListener("load", () => {
   function autenticar(userLogado) {
     const manterConectado = document.getElementById("continueConnected");
     const dataUserJson = JSON.stringify(userLogado);
-    const cords = 127;
-    const seed =
-      getRandomInt(cords) *
-      getRandomInt(cords) *
-      getRandomInt(cords) *
-      getRandomInt(cords);
-    const hexKey =
-      getRandomHex(seed) +
-      getRandomHex(seed) +
-      getRandomHex(seed) +
-      getRandomHex(seed);
-    const clientID = getRandomInt(255);
-    let token = hexKey + hexKey + "ValidDB:" + clientID;
 
-    localStorage.setItem("token", token);
-    msgError.setAttribute("style", "display: none");
-    msgSuccess.innerHTML = "Validando acesso...";
-    msgSuccess.setAttribute("style", "display: block");
+    formMessage("Validando Acesso...");
     localStorage.setItem("dataUser", dataUserJson);
     setCookie("continuarConectado", manterConectado.checked, 5);
 
@@ -162,24 +148,18 @@ window.addEventListener("load", () => {
   function loginMessage(msg) {
     window.brasil_Eternity_message("LOGIN", msg, "BRASIL ETERNITY CLIENT");
   }
+  
+  function formMessage(message){
+    msgError.setAttribute("style", "display: none");
+    msgSuccess.innerHTML = message;
+    msgSuccess.setAttribute("style", "display: block");
+  }
 
   function onError(error) {
     console.debug(error);
     msgError.setAttribute("style", "display: block");
     msgError.innerHTML = error;
     msgSuccess.setAttribute("style", "display: none");
-  }
-
-  function getRandomInt(max) {
-    return Math.floor(Math.random() * max);
-  }
-
-  function getRandomBin(max) {
-    return Math.floor(Math.random() * max).toString(2);
-  }
-
-  function getRandomHex(max) {
-    return Math.floor(Math.random() * max).toString(16);
   }
 
   function genTokenEncodeBase64(user, password) {
