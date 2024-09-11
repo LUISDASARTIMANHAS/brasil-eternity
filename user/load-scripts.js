@@ -1,8 +1,8 @@
 (() => {
   const autoscriptsUser = document.querySelector("autoscriptsuser");
-  const fonteUser = "https://brasil-eternity.com/user/";
+  const fonteUser = "/user/";
   const srcsUser = ["auth", "load-userinfo"];
-  const fonteScripts = "https://brasil-eternity.com/src/js/";
+  const fonteScripts = "/src/js/";
   const srcsScripts = ["manutencao-redirect", "functions", "offline"];
 
   for (let i = 0; i < srcsScripts.length; i++) {

@@ -107,7 +107,8 @@ body {
   min-height: 100vh;
 }
 
-header {
+header,
+.subheader{
   color: white;
   width: 100%;
   min-height: 90px;
@@ -124,6 +125,14 @@ header {
   -ms-user-select: none;
   user-select: none;
   align-content: center;
+}
+
+.subheader{
+  min-height: 50px;
+  max-height: 70px;
+  background-color: darkred;
+  border-radius: 50px;
+  font-size: 12px;
 }
 
 header .conteiner-buttons {
