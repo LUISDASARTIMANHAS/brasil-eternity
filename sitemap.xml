@@ -8,29 +8,34 @@
 
 
 <url>
-  <loc>http://brasil-eternity.com/</loc>
-  <lastmod>2024-07-10T17:13:44+00:00</lastmod>
-  <priority>1.00</priority>
+  <loc>https://brasil-eternity.com/</loc>
+  <lastmod>2024-09-13T23:10:55+00:00</lastmod>
+  <priority>1.10</priority>
 </url>
 <url>
-  <loc>http://brasil-eternity.com/wa</loc>
-  <lastmod>2024-07-10T17:13:33+00:00</lastmod>
+  <loc>https://brasil-eternity.com/ranking/</loc>
+  <lastmod>2024-09-13T23:10:55+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://brasil-eternity.com/votacao</loc>
-  <lastmod>2024-07-09T10:44:15+00:00</lastmod>
+  <loc>https://brasil-eternity.com/wa/</loc>
+  <lastmod>2024-09-13T23:10:55+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://brasil-eternity.com/wiki</loc>
-  <lastmod>2024-06-19T12:47:56+00:00</lastmod>
+  <loc>https://brasil-eternity.com/contato/</loc>
+  <lastmod>2024-09-13T23:10:55+00:00</lastmod>
+  <priority>1.800</priority>
+</url>
+<url>
+  <loc>https://brasil-eternity.com/login/</loc>
+  <lastmod>2024-09-13T23:10:55+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://brasil-eternity.com/login</loc>
-  <lastmod>2024-06-22T20:54:14+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://brasil-eternity.com/ranking/add-ranking</loc>
+  <lastmod>2024-09-13T23:10:55+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 
 

@@ -138,7 +138,7 @@ window.addEventListener("load", () => {
 
     formMessage("Validando Acesso...");
     localStorage.setItem("dataUser", dataUserJson);
-    setCookie("continuarConectado", manterConectado.checked, 5);
+    setCookie("continuarConectado", manterConectado.checked, 30);
 
     setTimeout(() => {
       window.location.href = "/user";
