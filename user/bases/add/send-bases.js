@@ -53,19 +53,15 @@ function preview() {
   const previewUsuario = document.getElementById("previewUsuario");
   const previewImg = document.getElementById("previewImg");
   const previewSimlink = document.getElementById("previewSimlink");
-  const inpSimlink = document.getElementById("simlink");
-  const inpThumbnail = document.getElementById("thumbnail");
-  let simlink = inpSimlink.value;
+  const inpSimlink = document.getElementById("simlink").value;
+  const inpThumbnail = document.getElementById("thumbnail").value;
+  const urlThumbnail = inpThumbnail;
+  let simlink = inpSimlink.toString();
 
   previewUsuario.textContent = dataUser.usuario;
-  // Verifica se o simlink começa com o prefixo correto
-  if (simlink.startsWith("https://link.hackersthegame.com/simlink.php?")) {
-    // Escapa os parâmetros da URL, mantendo o prefixo intacto
-    const url = new URL(simlink);
-    url.search = encodeURIComponent(url.search); // Codifica os parâmetros da URL
-    simlink = url.toString();
-  } else {
-    // Caso contrário, usa o link padrão
+  // Verifica se o simlink não começa com o prefixo correto
+  if (!simlink.startsWith("https://link.hackersthegame.com/simlink.php?")) {
+    // usa o simlink padrão se forem encontrados inconsistencias
     simlink = "https://link.hackersthegame.com/simlink.php?";
   }
 
@@ -77,14 +73,14 @@ function preview() {
     previewBase.textContent = "Not Found";
   }
 
-  if (inpThumbnail.value == "") {
+  if (urlThumbnail == "") {
     previewImg.setAttribute(
       "src",
       "https://link.hackersthegame.com/images/Hackers_title_512.png"
     );
   } else {
       // Codifica a URL do thumbnail para evitar problemas com caracteres especiais
-    previewImg.setAttribute("src", encodeURIComponent(inpThumbnail.value));
+    previewImg.setAttribute("src", urlThumbnail);
   }
 
   if (simlink == "" || simlink == null) {

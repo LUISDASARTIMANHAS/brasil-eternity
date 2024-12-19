@@ -47,7 +47,8 @@ function preview() {
   const previewUsuario = document.getElementById("previewUsuario");
   const previewImg = document.getElementById("previewImg");
   const previewSimlink = document.getElementById("previewSimlink");
-  const inpThumbnail = document.getElementById("thumbnail");
+  const inpThumbnail = document.getElementById("thumbnail").value;
+  const urlThumbnail = inpThumbnail;
   const baseSelecionada = selectBases.value;
   const base = pesqBase(bases, baseSelecionada);
 
@@ -60,7 +61,7 @@ function preview() {
     });
   }
 
-  if (inpThumbnail.value == "") {
+  if (urlThumbnail == "") {
     previewImg.setAttribute(
       "src",
       base.thumbnail ||
@@ -68,7 +69,7 @@ function preview() {
     );
   } else {
       // Codifica a URL do thumbnail para evitar problemas com caracteres especiais
-    previewImg.setAttribute("src", encodeURIComponent(inpThumbnail.value));
+    previewImg.setAttribute("src", urlThumbnail);
   }
 
   if (baseSelecionada == "default") {
