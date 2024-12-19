@@ -16,8 +16,10 @@ function verificar() {
   const thumbnail = inpThumbnail.value;
   let simlink = inpSimlink.value;
 
-
-  if (simlink.length < 20 || !simlink.startsWith("https://link.hackersthegame.com/simlink.php?")) {
+  if (
+    simlink.length < 20 ||
+    !simlink.startsWith("https://link.hackersthegame.com/simlink.php?")
+  ) {
     simlink = inpSimlink.value;
     alert("Insira um Simlink Valido!");
   } else if (
@@ -35,9 +37,9 @@ function verificar() {
   ) {
     alert("A imagem precisa ser png ou jpg");
   } else {
-    getBaseName(simlink,(baseNameFormated) => {
+    getBaseName(simlink, (baseNameFormated) => {
       sendBase(baseNameFormated, simlink, thumbnail);
-    }); 
+    });
   }
 }
 
@@ -54,27 +56,35 @@ function preview() {
   const inpSimlink = document.getElementById("simlink");
   const inpThumbnail = document.getElementById("thumbnail");
   let simlink = inpSimlink.value;
-  
 
-    previewUsuario.textContent = dataUser.usuario;
-  if (
-    simlink.startsWith("https://link.hackersthegame.com/simlink.php?")
-  ) {
-    simlink = inpSimlink.value;
+  previewUsuario.textContent = dataUser.usuario;
+  // Verifica se o simlink começa com o prefixo correto
+  if (simlink.startsWith("https://link.hackersthegame.com/simlink.php?")) {
+    // Escapa os parâmetros da URL, mantendo o prefixo intacto
+    const url = new URL(simlink);
+    url.search = encodeURIComponent(url.search); // Codifica os parâmetros da URL
+    simlink = url.toString();
+  } else {
+    // Caso contrário, usa o link padrão
+    simlink = "https://link.hackersthegame.com/simlink.php?";
   }
 
-  if (simlink.length > 20 && simlink.startsWith("https://link.hackersthegame.com/simlink.php?")) {
-    getBaseName(simlink,(baseNameFormated) => {
+  if (simlink.length > 45) {
+    getBaseName(simlink, (baseNameFormated) => {
       previewBase.textContent = `『ᴮʳETER』${baseNameFormated}`;
     });
-  }else{
+  } else {
     previewBase.textContent = "Not Found";
   }
-  
+
   if (inpThumbnail.value == "") {
-    previewImg.setAttribute("src","https://link.hackersthegame.com/images/Hackers_title_512.png");
+    previewImg.setAttribute(
+      "src",
+      "https://link.hackersthegame.com/images/Hackers_title_512.png"
+    );
   } else {
-    previewImg.setAttribute("src",inpThumbnail.value);
+      // Codifica a URL do thumbnail para evitar problemas com caracteres especiais
+    previewImg.setAttribute("src", encodeURIComponent(inpThumbnail.value));
   }
 
   if (simlink == "" || simlink == null) {
@@ -108,14 +118,14 @@ function sendBase(base, simlink, thumbnail) {
     body: JSON.stringify(payloadLogin),
   };
 
-  message("Cadastrando Base Aguarde confirmação...")
+  message("Cadastrando Base Aguarde confirmação...");
   fetch(url, options)
     .then((response) => {
       if (response.ok) {
         return response.text();
       } else {
         return response.text().then((errorText) => {
-          message("Erro ao cadastrar base: " + errorText)
+          message("Erro ao cadastrar base: " + errorText);
           throw new Error("Erro ao cadastrar base: " + errorText);
         });
       }
@@ -124,7 +134,7 @@ function sendBase(base, simlink, thumbnail) {
       console.log("DATA RESPONSE: ");
       console.log(data);
       alert(data);
-    message(data)
+      message(data);
       setTimeout(() => {
         window.location.href = "user/bases";
       }, 2000);
@@ -132,11 +142,14 @@ function sendBase(base, simlink, thumbnail) {
     .catch((error) => onError(error));
 }
 
-function getBaseName(simlink,callback) {
+function getBaseName(simlink, callback) {
   const date = new Date();
   const id = Math.floor(Math.random() * 20242002);
   const payload = {
-    urlParams: simlink.replace("https://link.hackersthegame.com/simlink.php?",""),
+    urlParams: simlink.replace(
+      "https://link.hackersthegame.com/simlink.php?",
+      ""
+    ),
   };
   const options = {
     method: "POST",
@@ -171,7 +184,7 @@ function getBaseName(simlink,callback) {
       const baseNameFormated = baseName
         .replace("SimLink to ", "")
         .replace("'s network", "")
-        .replace("『ᴮʳETER』", "");;
+        .replace("『ᴮʳETER』", "");
       callback(baseNameFormated);
     })
     .catch((error) => onError(error));
@@ -181,7 +194,6 @@ function getBaseName(simlink,callback) {
     alert(error);
   }
 }
-
 
 function message(msg) {
   const url = "https://pingobras-sg.glitch.me/api/brasilEternity/mensagem";

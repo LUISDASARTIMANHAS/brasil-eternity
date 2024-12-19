@@ -67,7 +67,8 @@ function preview() {
         "https://link.hackersthegame.com/images/Hackers_title_512.png"
     );
   } else {
-    previewImg.setAttribute("src", inpThumbnail.value);
+      // Codifica a URL do thumbnail para evitar problemas com caracteres especiais
+    previewImg.setAttribute("src", encodeURIComponent(inpThumbnail.value));
   }
 
   if (baseSelecionada == "default") {
