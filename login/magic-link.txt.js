@@ -1,29 +1,36 @@
 window.addEventListener("load", () => {
+  const form = document.getElementById("form");
   const formCode = document.getElementById("formCode");
+  const btnEntrar = document.getElementById("btnEntrar");
+  const loading = document.getElementById("loadingCode");
+  const cookieContinuarConectado = getCookie("continuarConectado");
   const msgError = document.getElementById("msgError");
   const msgSuccess = document.getElementById("msgSuccess");
-  const inpCode = document.getElementById("code");
+  const lastDataUser = JSON.parse(localStorage.getItem("dataUser"));
 
-  formCode.addEventListener("submit", (event) => {
+  // redireciona o usuario caso ele tenha feito login anteriormente e auorizado o dispositivo a continuar logado
+  if (cookieContinuarConectado == "true" && lastDataUser) {
+    loginMessage(`Bem vindo de volta ${lastDataUser.usuario}!`);
+    window.location.href = "/user";
+  } else {
+    // habilita o sistma de login caso o usuario não tenha feito login anteriormente ou não autorizou o dispositivo a permanecer conectado
+    btnEntrar.hidden = false;
+    loading.hidden = true;
+  }
+
+  form.addEventListener("submit", (event) => {
     event.preventDefault();
-    sendCode();
-  });
-  // aciona o enviar codigo automaticamente para caracteres digitados acima de 5
-  inpCode.addEventListener("input", () => {
-    if (inpCode.value.length > 5) {
-      sendCode();
-    }
+    getData();
   });
 
-  async function sendCode() {
+  function getData() {
     const inpEmail = document.getElementById("email");
-    const inpCode = document.getElementById("code");
-    const url = "https://pingobras-sg.glitch.me/api/brasil-eternity/login";
+    const url =
+      "https://pingobras-sg.glitch.me/api/brasil-eternity/login/magiclink";
     const date = new Date();
     const id = Math.floor(Math.random() * 20242002);
     const payloadLogin = {
       email: inpEmail.value,
-      code: inpCode.value,
     };
     const options = {
       method: "POST",
@@ -41,44 +48,30 @@ window.addEventListener("load", () => {
     };
 
     formMessage("Aguardando Servidor...");
-    await loginMessage(
-      `${censurarEmail(
-        inpEmail.value
-      )} Esta tentando fazer login, Aguarde confirmação!`
-    );
+    loginMessage(` ${censurarEmail(inpEmail.value)} pediu um magic link!`);
     fetch(url, options)
       .then(async (response) => {
         if (response.ok) {
-          await loginMessage(
-            `${censurarEmail(inpEmail.value)} Logado com sucesso!`
-          );
-          return response.json();
+          formMessage("Aguardando Código de Confirmação!");
+          await loginMessage(`Magic Link enviado com sucesso!`);
+          return response.text();
         } else {
           return response.text().then(async (errorText) => {
-            await loginMessage("Erro ao fazer login: " + errorText);
-            throw new Error("Erro ao fazer login: " + errorText);
+            await loginMessage(
+              "Erro ao Enviar Codigo Magick Link: " + errorText
+            );
+            throw new Error("Erro ao Enviar Codigo Magick Link: " + errorText);
           });
         }
       })
       .then((data) => {
         console.log("DATA RESPONSE: ");
         console.log(data);
-        autenticar(data);
+        formMessage(data);
+        form.hidden = true;
+        formCode.hidden = false;
       })
       .catch((error) => onError(error));
-  }
-
-  function autenticar(userLogado) {
-    const manterConectado = document.getElementById("continueConnected");
-    const dataUserJson = JSON.stringify(userLogado);
-
-    formMessage("Validando Acesso...");
-    localStorage.setItem("dataUser", dataUserJson);
-    setCookie("continuarConectado", manterConectado.checked, 30);
-
-    setTimeout(() => {
-      window.location.href = "/user";
-    }, 4000);
   }
 
   async function loginMessage(msg) {
@@ -102,17 +95,20 @@ window.addEventListener("load", () => {
     msgSuccess.setAttribute("style", "display: none");
   }
 
-  function genTokenEncodeBase64(user, password) {
-    var token = user + ":" + password;
-    var encodedToken = btoa(token);
-    return "Basic " + encodedToken;
-  }
-
-  function setCookie(cname, cvalue, exdays) {
-    const d = new Date();
-    d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
-    let expires = "expires=" + d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(";");
+    for (let i = 0; i < ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == " ") {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
   }
 
   function censurarEmail(email) {
@@ -124,5 +120,11 @@ window.addEventListener("load", () => {
       // Se o email for menor que 5 caracteres, não faz nada
       return email;
     }
+  }
+
+  function genTokenEncodeBase64(user, password) {
+    var token = user + ":" + password;
+    var encodedToken = btoa(token);
+    return "Basic " + encodedToken;
   }
 });
