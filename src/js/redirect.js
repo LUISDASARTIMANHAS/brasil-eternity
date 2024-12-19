@@ -33,7 +33,7 @@
   }
 
   function redirectMsg(msg) {
-    window.brasil_Eternity_message("REDIRECT", msg, "BRASIL ETERNITY CLIENT");
+    window.brasil_Eternity_message("REDIRECT", msg);
     redirectBarSt.width = "75%";
     redirectBar.textContent = "carregando...75%";
     if (useNumber) {

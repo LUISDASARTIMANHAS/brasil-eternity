@@ -127,6 +127,6 @@ function pesqBase(database, name) {
 getBase();
 
 function message(msg) {
-  window.brasil_Eternity_message("ADD BASE RANKING", msg, "BRASIL ETERNITY CLIENT");
+  window.brasil_Eternity_message("ADD BASE RANKING", msg);
 }
 

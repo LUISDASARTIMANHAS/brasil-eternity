@@ -117,6 +117,6 @@ https://brasil-eternity.com/login`;
   }
 
   function message(msg) {
-    window.brasil_Eternity_message("GERAR TEXTO", msg, "BRASIL ETERNITY CLIENT");
+    window.brasil_Eternity_message("GERAR TEXTO", msg);
   }
 })();
