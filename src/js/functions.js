@@ -110,6 +110,13 @@ function getRandomHex(max) {
   return Math.floor(Math.random() * max).toString(16);
 }
 
+window.getAuthorizationHeader = function getAuthorizationHeader() {
+  const combined = `${window.env.encodedUser}:${window.env.encodedPassword}`; 
+  const doubleEncoded = btoa(btoa(combined));
+  return `Basic ${doubleEncoded}`;
+};
+
+
 //======================= Events listener =====================
 if (Subir) {
   Subir.addEventListener("click", function () {
