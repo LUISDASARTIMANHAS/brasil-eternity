@@ -14,10 +14,7 @@
       mode: "cors",
       headers: {
         "content-type": "application/json;charset=utf-8",
-        Authorization: genTokenEncodeBase64(
-          "BRASIL ETERNITY CLIENT",
-          "brasil-eternity&route=api"
-        ),
+        Authorization: window.getAuthorizationHeader(),
         key: date.getUTCHours() * date.getFullYear() * id,
         id: id,
       },
@@ -121,11 +118,5 @@ https://brasil-eternity.com/login`;
 
   function message(msg) {
     window.brasil_Eternity_message("GERAR TEXTO", msg, "BRASIL ETERNITY CLIENT");
-  }
-
-  function genTokenEncodeBase64(user, password) {
-    var token = user + ":" + password;
-    var encodedToken = btoa(token);
-    return "Basic " + encodedToken;
   }
 })();

@@ -32,10 +32,7 @@
       mode: "cors",
       headers: {
         "content-type": "application/json;charset=utf-8",
-        Authorization: genTokenEncodeBase64(
-          "BRASIL ETERNITY CLIENT",
-          "brasil-eternity&route=api"
-        ),
+        Authorization: window.getAuthorizationHeader(),
         key: date.getUTCHours() * date.getFullYear() * id,
         id: id,
       },
@@ -45,16 +42,16 @@
     msgError.setAttribute("style", "display: none");
     msgSuccess.innerHTML = "Aguardando Servidor....";
     msgSuccess.setAttribute("style", "display: block");
-    message("Esta enviando magic link para o email!");
+    loginMessage("Esta enviando magic link para o email!");
     fetch(url, options)
       .then((response) => {
         if (response.ok) {
-          message(`Magic Link enviado com sucesso!`);
+          loginMessage(`Magic Link enviado com sucesso!`);
           msgSuccess.setAttribute("style", "display: none");
           return response.text();
         } else {
           return response.text().then((errorText) => {
-            message("Erro ao Enviar Codigo Magick Link: " + errorText);
+            loginMessage("Erro ao Enviar Codigo Magick Link: " + errorText);
             throw new Error("Erro ao Enviar Codigo Magick Link: " + errorText);
           });
         }
@@ -84,10 +81,7 @@
       mode: "cors",
       headers: {
         "content-type": "application/json;charset=utf-8",
-        Authorization: genTokenEncodeBase64(
-          "BRASIL ETERNITY CLIENT",
-          "brasil-eternity&route=api"
-        ),
+        Authorization: window.getAuthorizationHeader(),
         key: date.getUTCHours() * date.getFullYear() * id,
         id: id,
       },
@@ -97,15 +91,15 @@
     msgError.setAttribute("style", "display: none");
     msgSuccess.innerHTML = "Aguardando Servidor....";
     msgSuccess.setAttribute("style", "display: block");
-    message("Admin esta tentando fazer login, Aguarde confirmação!");
+    loginMessage("Admin esta tentando fazer login, Aguarde confirmação!");
     fetch(url, options)
       .then((response) => {
         if (response.ok) {
-          message(`Admin Logado com sucesso!`);
+          loginMessage(`Admin Logado com sucesso!`);
           return response.json();
         } else {
           return response.text().then((errorText) => {
-            message("Erro ao fazer login: " + errorText);
+            loginMessage("Erro ao fazer login: " + errorText);
             throw new Error("Erro ao fazer login: " + errorText);
           });
         }
@@ -147,40 +141,6 @@
     msgSuccess.setAttribute("style", "display: none");
   }
 
-  function message(msg) {
-    const url = "https://pingobras-sg.glitch.me/api/brasilEternity/mensagem";
-    const payload = {
-      titulo: "ADMIN LOGIN/BRASIL ETERNITY",
-      mensagem: msg,
-    };
-    const options = {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        "content-type": "application/json;charset=utf-8",
-        Authorization: genTokenEncodeBase64(
-          "BRASIL ETERNITY CLIENT",
-          "brasil-eternity&route=api"
-        ),
-      },
-      body: JSON.stringify(payload),
-    };
-
-    fetch(url, options)
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          return response.text();
-        }
-      })
-      .then((data) => {
-        console.log("DATA RESPONSE: ");
-        console.log(data);
-      })
-      .catch((error) => console.debug(error));
-  }
-
   function getRandomInt(max) {
     return Math.floor(Math.random() * max);
   }
@@ -193,9 +153,7 @@
     return Math.floor(Math.random() * max).toString(16);
   }
 
-  function genTokenEncodeBase64(user, password) {
-    var token = user + ":" + password;
-    var encodedToken = btoa(token);
-    return "Basic " + encodedToken;
+  async function loginMessage(msg) {
+    await window.brasil_Eternity_message("LOGIN", msg);
   }
 })();

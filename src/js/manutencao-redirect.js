@@ -9,10 +9,7 @@
       "content-type": "application/json;charset=utf-8",
       key: date.getUTCHours() * date.getFullYear() * id,
       id: id,
-      authorization: genTokenEncodeBase64(
-        "manutencao",
-        "brasil-eternity&route=api"
-      ),
+      authorization: window.getAuthorizationHeader(),
     },
   };
   fetch(url, options)
@@ -55,55 +52,4 @@
   }
   redirectManutencao(false);
 
-  function genTokenEncodeBase64(user, password) {
-    var token = user + ":" + password;
-    var encodedToken = btoa(token);
-    return "Basic " + encodedToken;
-  }
 })();
-
-
-// const url = "https://pingobras-sg.glitch.me/api/brasil-eternity/manutencao";
-//     const payload = {
-//         "manutencao": "false"
-//     };
-//     const options = {
-//       method: "POST",
-//       mode: "cors",
-//       headers: {
-//         "content-type": "application/json;charset=utf-8",
-//         Authorization: genTokenEncodeBase64("manutencao", "brasil-eternity&route=api"),
-//       },
-//       body: JSON.stringify(payload),
-//     };
-
-//     fetch(url, options)
-//       .then((response) => {
-//         if (response.ok) {
-//           const headers = response.headers;
-//           const contentType = headers.get("Content-Type");
-//           console.log(contentType);
-
-//           if (contentType && contentType.includes("application/json")) {
-//             return response.json();
-//           } else {
-//             return response.text();
-//           }
-//         } else {
-//           return response.text().then((errorText) => {
-//             const errorMessage = `Statuscode: ${response.status} - ${errorText}`;
-//             throw new Error(errorMessage);
-//           });
-//         }
-//       })
-//       .then((data) => {
-//         console.log("DATA RESPONSE: ");
-//         console.log(data);
-//       })
-//       .catch((error) => console.debug(error));
-
-//   function genTokenEncodeBase64(user, password) {
-//     var token = user + ":" + password;
-//     var encodedToken = btoa(token);
-//     return "Basic " + encodedToken;
-//   }

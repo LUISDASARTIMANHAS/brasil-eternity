@@ -9,10 +9,7 @@ function getBases() {
     mode: "cors",
     headers: {
       "content-type": "application/json;charset=utf-8",
-      Authorization: genTokenEncodeBase64(
-        "BRASIL ETERNITY CLIENT",
-        "brasil-eternity&route=api"
-      ),
+      Authorization: window.getAuthorizationHeader(),
       key: date.getUTCHours() * date.getFullYear() * id,
       id: id,
     },
@@ -126,11 +123,6 @@ function onError(error) {
   alert(error);
 }
 
-function genTokenEncodeBase64(user, password) {
-  var token = user + ":" + password;
-  var encodedToken = btoa(token);
-  return "Basic " + encodedToken;
-}
 
 // <li>
 //   <div class="card">

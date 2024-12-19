@@ -102,10 +102,7 @@ function sendBase(base, simlink, thumbnail) {
     mode: "cors",
     headers: {
       "content-type": "application/json;charset=utf-8",
-      Authorization: genTokenEncodeBase64(
-        "BRASIL ETERNITY CLIENT",
-        "brasil-eternity&route=api"
-      ),
+      Authorization: window.getAuthorizationHeader(),
       key: date.getUTCHours() * date.getFullYear() * id,
       id: id,
     },
@@ -148,10 +145,7 @@ function getBaseName(simlink,callback) {
       "content-type": "application/json; charset=UTF-8",
       Accept: "*/*",
       "Cache-Control": "no-cache",
-      Authorization: genTokenEncodeBase64(
-        "BRASIL ETERNITY CLIENT",
-        "brasil-eternity&route=api"
-      ),
+      Authorization: window.getAuthorizationHeader(),
       key: date.getUTCHours() * date.getFullYear() * id,
       id: id,
     },
@@ -201,10 +195,7 @@ function message(msg) {
     mode: "cors",
     headers: {
       "content-type": "application/json;charset=utf-8",
-      Authorization: genTokenEncodeBase64(
-        "BRASIL ETERNITY CLIENT",
-        "brasil-eternity&route=api"
-      ),
+      Authorization: window.getAuthorizationHeader(),
     },
     body: JSON.stringify(payload),
   };
@@ -222,10 +213,4 @@ function message(msg) {
       console.log(data);
     })
     .catch((error) => console.debug(error));
-}
-
-function genTokenEncodeBase64(user, password) {
-  var token = user + ":" + password;
-  var encodedToken = btoa(token);
-  return "Basic " + encodedToken;
 }
