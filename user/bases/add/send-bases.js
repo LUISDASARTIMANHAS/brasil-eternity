@@ -72,10 +72,9 @@ function preview() {
   }
   
   if (inpThumbnail.value == "") {
-    previewImg.src =
-      "https://link.hackersthegame.com/images/Hackers_title_512.png";
+    previewImg.setAttribute("src","https://link.hackersthegame.com/images/Hackers_title_512.png");
   } else {
-    previewImg.src = inpThumbnail.value;
+    previewImg.setAttribute("src",inpThumbnail.value);
   }
 
   if (simlink == "" || simlink == null) {
