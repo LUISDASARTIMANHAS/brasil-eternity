@@ -3,7 +3,7 @@
   const fonteUser = "/user/";
   const srcsUser = ["auth", "load-userinfo"];
   const fonteScripts = "/src/js/";
-  const srcsScripts = ["manutencao-redirect", "functions", "offline"];
+  const srcsScripts = ["manutencao-redirect", "functions", "offline", "config"];
 
   for (let i = 0; i < srcsScripts.length; i++) {
     var newScript = document.createElement("script");
