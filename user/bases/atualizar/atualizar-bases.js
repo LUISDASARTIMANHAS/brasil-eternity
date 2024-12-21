@@ -42,7 +42,7 @@ function onError(error) {
 }
 
 function atualizarBase(lastBase, base, thumbnail) {
-  const url = "https://pingobras-sg.glitch.me/api/brasil-eternity/bases";
+  const url = `${window.env.apiUrl}/bases`;
   const date = new Date();
   const id = Math.floor(Math.random() * 20242002);
   const payloadLogin = {
@@ -88,7 +88,7 @@ function atualizarBase(lastBase, base, thumbnail) {
 }
 
 function getBase() {
-  const url = "https://pingobras-sg.glitch.me/api/brasil-eternity/bases";
+  const url = `${window.env.apiUrl}/bases`;
   const date = new Date();
   const id = Math.floor(Math.random() * 20242002);
   const options = {
@@ -148,7 +148,7 @@ function getBaseName(simlink, callback) {
 
   message("Obtendo nome da base para efetuar atualização!");
   fetch(
-    "https://pingobras-sg.glitch.me/api/brasil-eternity/bases/name",
+    `${window.env.apiUrl}/bases/name`,
     options
   )
     .then((response) => {

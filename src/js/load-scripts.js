@@ -1,3 +1,5 @@
+// window.addEventListener("load", () => {
+// faz com que o script espere a pagina carregar incluindo importacoes indiretas
 (() => {
   const autoscripts = document.querySelector("autoscripts");
   const fonteUser = "/src/js/";

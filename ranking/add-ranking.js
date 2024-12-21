@@ -20,7 +20,7 @@ function onError(error) {
 }
 
 function sendBaseRanking() {
-  const url = "https://pingobras-sg.glitch.me/api/brasil-eternity/ranking";
+  const url = `${window.env.apiUrl}/ranking`;
   const date = new Date();
   const id = Math.floor(Math.random() * 20242002);
   const baseSelecionada = selectBases.value;
@@ -70,7 +70,7 @@ function sendBaseRanking() {
 }
 
 function getBase() {
-  const url = "https://pingobras-sg.glitch.me/api/brasil-eternity/basesName";
+  const url = `${window.env.apiUrl}/basesName`;
   const date = new Date();
   const id = Math.floor(Math.random() * 20242002);
   const options = {

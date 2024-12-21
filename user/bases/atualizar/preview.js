@@ -71,7 +71,7 @@ window.addEventListener("load", () => {
 
     message("Obtendo nome da base para efetuar atualização!");
     fetch(
-      "https://pingobras-sg.glitch.me/api/brasil-eternity/bases/name",
+      `${window.env.apiUrl}/bases/name`,
       options
     )
       .then((response) => {

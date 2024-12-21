@@ -79,7 +79,7 @@ function preview() {
       "https://link.hackersthegame.com/images/Hackers_title_512.png"
     );
   } else {
-      // Codifica a URL do thumbnail para evitar problemas com caracteres especiais
+    // Codifica a URL do thumbnail para evitar problemas com caracteres especiais
     previewImg.setAttribute("src", urlThumbnail);
   }
 
@@ -93,7 +93,7 @@ function preview() {
 }
 
 function sendBase(base, simlink, thumbnail) {
-  const url = "https://pingobras-sg.glitch.me/api/brasil-eternity/bases";
+  const url = `${window.env.apiUrl}/bases`;
   const date = new Date();
   const id = Math.floor(Math.random() * 20242002);
   const payloadLogin = {
@@ -161,10 +161,7 @@ function getBaseName(simlink, callback) {
   };
   const parser = new DOMParser();
 
-  fetch(
-    "https://pingobras-sg.glitch.me/api/brasil-eternity/bases/name",
-    options
-  )
+  fetch(`${window.env.apiUrl}/bases/name`, options)
     .then((response) => {
       if (response.ok) {
         return response.text();
