@@ -1,4 +1,4 @@
-(() => {
+window.addEventListener("load", () => {
   const btnCopyText = document.getElementById("copyText");
   const dataUser = JSON.parse(localStorage.getItem("dataUser"));
   const usuario = dataUser.usuario;
@@ -6,7 +6,7 @@
   btnCopyText.addEventListener("click", copyText);
 
   function getBases() {
-    const url = "https://pingobras-sg.glitch.me/api/brasil-eternity/bases";
+    const url = `${window.env.apiUrl}/bases`;
     const date = new Date();
     const id = Math.floor(Math.random() * 20242002);
     const options = {
@@ -119,4 +119,4 @@ https://brasil-eternity.com/login`;
   function message(msg) {
     window.brasil_Eternity_message("GERAR TEXTO", msg);
   }
-})();
+});

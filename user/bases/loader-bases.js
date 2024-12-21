@@ -1,7 +1,7 @@
 window.addEventListener("load", getBases);
 
 function getBases() {
-  const url = "https://pingobras-sg.glitch.me/api/brasil-eternity/bases";
+  const url = `${window.env.apiUrl}/bases`;
   const date = new Date();
   const id = Math.floor(Math.random() * 20242002);
   const options = {

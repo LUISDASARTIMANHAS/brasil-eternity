@@ -7,8 +7,8 @@ window.addEventListener("load", () => {
     delearConta();
   }
 
-  function delearConta() {
-    const url = "https://pingobras-sg.glitch.me/api/brasil-eternity/user";
+ async function delearConta() {
+    const url = `${window.env.apiUrl}/user`;
     const date = new Date();
     const id = Math.floor(Math.random() * 20242002);
     const options = {
@@ -23,23 +23,24 @@ window.addEventListener("load", () => {
       body: localStorage.getItem("dataUser"),
     };
 
-    message("Deletando Conta. Aguarde confirmação...!");
+   await message("Deletando Conta. Aguarde confirmação...!");
     fetch(url, options)
-      .then((response) => {
+      .then(async (response) => {
         if (response.ok) {
+          await message("COnta Deletada! Espero que tenha sido bom!");
           return response.text();
         } else {
-          return response.text().then((errorText) => {
-            message("Erro ao deletar conta: " + errorText);
+          return response.text().then(async (errorText) => {
+           await message("Erro ao deletar conta: " + errorText);
             throw new Error("Erro ao deletar conta: " + errorText);
           });
         }
       })
-      .then((data) => {
+      .then(async (data) => {
         console.log("DATA RESPONSE: ");
         console.log(data);
         localStorage.removeItem("dataUser");
-        message(data);
+       await message(data);
         alert(data);
         setTimeout(() => {
           window.location.href = "/";
@@ -47,9 +48,13 @@ window.addEventListener("load", () => {
       })
       .catch((error) => onError(error));
   }
+  
+  async function message(msg) {
+    await window.brasil_Eternity_message("DELETAR", msg);
+  }
+  
   function onError(error) {
     console.debug(error);
     alert(error);
   }
-
 });

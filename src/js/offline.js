@@ -1,3 +1,6 @@
+// window.addEventListener("load", () => {
+// faz com que o script espere a pagina carregar incluindo importacoes indiretas
+// não e necessario aqui pois não usa window nem outras importacoes indiretas
 (() => {
   const url = "https://pingobras-sg.glitch.me/";
   const date = new Date();
