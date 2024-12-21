@@ -1,128 +1,147 @@
 window.addEventListener("load", getBases);
 
 function getBases() {
-  const url = `${window.env.apiUrl}/bases`;
-  const date = new Date();
-  const id = Math.floor(Math.random() * 20242002);
-  const options = {
-    method: "GET",
-    mode: "cors",
-    headers: {
-      "content-type": "application/json;charset=utf-8",
-      Authorization: window.getAuthorizationHeader(),
-      key: date.getUTCHours() * date.getFullYear() * id,
-      id: id,
-    },
-  };
-  console.log(options.headers);
-  fetch(url, options)
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        return response.text().then((errorText) => {
-          throw new Error(
-            "Erro ao obter banco de dados dos simlinks: " + errorText
-          );
-        });
-      }
-    })
-    .then((data) => {
-      console.log("DATA RESPONSE: ");
-      console.log(data);
-      renderBases(data);
-    })
-    .catch((error) => onError(error));
+  try {
+    const url = `${window.env.apiUrl}/bases`;
+    const date = new Date();
+    const id = Math.floor(Math.random() * 20242002);
+    const options = {
+      method: "GET",
+      mode: "cors",
+      headers: {
+        "content-type": "application/json;charset=utf-8",
+        Authorization: window.getAuthorizationHeader(),
+        key: date.getUTCHours() * date.getFullYear() * id,
+        id: id,
+      },
+    };
+    console.log(options.headers);
+    fetch(url, options)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          return response.text().then((errorText) => {
+            throw new Error(
+              "Erro ao obter banco de dados dos simlinks: " + errorText
+            );
+          });
+        }
+      })
+      .then((data) => {
+        console.log("DATA RESPONSE: ");
+        console.log(data);
+        renderBases(data);
+      })
+      .catch((error) => onError(error));
+  } catch (err) {
+    alert(
+      "ERRO INTERNO FALTAL: " + err + "\n CONTATE O ADMINISTRADOR DO SITE!"
+    );
+  }
 }
 
 function renderBases(database) {
-  const autoloadBases = document.getElementById("autoloadBases");
-  const totalBases = document.getElementById("totalBases");
+  try {
+    const autoloadBases = document.getElementById("autoloadBases");
+    const totalBases = document.getElementById("totalBases");
 
-  autoloadBases.innerHTML = "Todas As Bases Foram Carregadas!";
-  totalBases.textContent = database.length;
-  for (let i = 0; i < database.length; i++) {
-    const base = database[i];
-    var liElement = document.createElement("li");
-    var divElementCard = document.createElement("div");
-    var imgElementElement = document.createElement("img");
-    var divQrCodeElementElement = document.createElement("div");
-    var pElementUsuario = document.createElement("p");
-    var pElementBase = document.createElement("p");
-    var divElementSimlink = document.createElement("div");
-    var ioniconElementSimlink = document.createElement("ion-icon");
-    var pElementSimlink = document.createElement("p");
-    var aElementSimlink = document.createElement("a");
-    let qrCodeconfig = {
-      text: base.simlink || "/",
-      width: 128,
-      height: 128,
-      colorDark: "#000000",
-      colorLight: "#ff0000",
-      correctLevel: window.QRCode.CorrectLevel.H, // Nível de correção de erro
-    };
+    autoloadBases.innerHTML = "Todas As Bases Foram Carregadas!";
+    totalBases.textContent = database.length;
+    for (let i = 0; i < database.length; i++) {
+        // cria um delay para que a não adicione todos os elementos de uma vez e trave o dispositivo da pessoa 
+      // i * 500 para cada elemento a frente são multiplicados 500ms
+      // exemplo: 1*500 = 500; 2*500 = 1s; 3*500 = 1,5s; 4*500 = 2s;
+      setTimeout(() => { 
+        const base = database[i];
+        var liElement = document.createElement("li");
+        var divElementCard = document.createElement("div");
+        var imgElementElement = document.createElement("img");
+        var divQrCodeElementElement = document.createElement("div");
+        var pElementUsuario = document.createElement("p");
+        var pElementBase = document.createElement("p");
+        var divElementSimlink = document.createElement("div");
+        var ioniconElementSimlink = document.createElement("ion-icon");
+        var pElementSimlink = document.createElement("p");
+        var aElementSimlink = document.createElement("a");
+        let qrCodeconfig = {
+          text: base.simlink || "/",
+          width: 128,
+          height: 128,
+          colorDark: "#000000",
+          colorLight: "#ff0000",
+          correctLevel: window.QRCode.CorrectLevel.H, // Nível de correção de erro
+        };
 
-    //Configurações da img
-    if (base.thumbnail) {
-      imgElementElement.setAttribute("src", base.thumbnail);
-    } else {
-      imgElementElement.setAttribute(
-        "src",
-        "https://link.hackersthegame.com/images/Hackers_title_512.png"
-      );
+        //Configurações da img
+        if (base.thumbnail) {
+          imgElementElement.setAttribute("src", base.thumbnail);
+        } else {
+          imgElementElement.setAttribute(
+            "src",
+            "https://link.hackersthegame.com/images/Hackers_title_512.png"
+          );
+        }
+        imgElementElement.setAttribute("alt", "Icone da Base");
+        imgElementElement.setAttribute("class", "icone-base");
+
+        //Configurações da img qrcode
+        new window.QRCode(divQrCodeElementElement, qrCodeconfig);
+        divQrCodeElementElement.setAttribute("title", "QrCode da Base");
+        divQrCodeElementElement.setAttribute("class", "qrcode");
+
+        //Configurações do p base e do p usuario
+        pElementUsuario.innerHTML = `Usuário: ${base.user}`;
+        pElementBase.innerHTML = `Base: ${base.name}`;
+
+        //Configurações do ion icon
+        divElementSimlink.setAttribute("class", "simlink");
+
+        //Configurações do ion icon
+        ioniconElementSimlink.name = "link-outline";
+        ioniconElementSimlink.title =
+          "Simlink da Base, basta clicar para fazer o teste";
+
+        //Configurações do p simlink
+        pElementSimlink.textContent = "SimLink: ";
+
+        //Configurações do a simlink do p simlink
+        aElementSimlink.setAttribute("href", base.simlink || "/");
+        aElementSimlink.setAttribute("target", "_blank");
+        aElementSimlink.textContent = "Click Here";
+
+        //Configurações da div card
+        divElementCard.setAttribute("class", "card");
+
+        divElementSimlink.appendChild(ioniconElementSimlink);
+        divElementSimlink.appendChild(pElementSimlink);
+        divElementSimlink.appendChild(aElementSimlink);
+
+        divElementCard.appendChild(imgElementElement);
+        divElementCard.appendChild(divQrCodeElementElement);
+
+        divElementCard.appendChild(pElementUsuario);
+        divElementCard.appendChild(pElementBase);
+        divElementCard.appendChild(divElementSimlink);
+
+        liElement.appendChild(divElementCard);
+
+        autoloadBases.appendChild(liElement);
+      }, i * 500);
     }
-    imgElementElement.setAttribute("alt", "Icone da Base");
-    imgElementElement.setAttribute("class", "icone-base");
-
-    //Configurações da img qrcode
-    new window.QRCode(divQrCodeElementElement, qrCodeconfig);
-    divQrCodeElementElement.setAttribute("title", "QrCode da Base");
-    divQrCodeElementElement.setAttribute("class", "qrcode");
-
-    //Configurações do p base e do p usuario
-    pElementUsuario.innerHTML = `Usuário: ${base.user}`;
-    pElementBase.innerHTML = `Base: ${base.name}`;
-
-    //Configurações do ion icon
-    divElementSimlink.setAttribute("class", "simlink");
-
-    //Configurações do ion icon
-    ioniconElementSimlink.name = "link-outline";
-    ioniconElementSimlink.title =
-      "Simlink da Base, basta clicar para fazer o teste";
-
-    //Configurações do p simlink
-    pElementSimlink.textContent = "SimLink: ";
-
-    //Configurações do a simlink do p simlink
-    aElementSimlink.setAttribute("href", base.simlink || "/");
-    aElementSimlink.setAttribute("target", "_blank");
-    aElementSimlink.textContent = "Click Here";
-
-    //Configurações da div card
-    divElementCard.setAttribute("class", "card");
-
-    divElementSimlink.appendChild(ioniconElementSimlink);
-    divElementSimlink.appendChild(pElementSimlink);
-    divElementSimlink.appendChild(aElementSimlink);
-
-    divElementCard.appendChild(imgElementElement);
-    divElementCard.appendChild(divQrCodeElementElement);
-
-    divElementCard.appendChild(pElementUsuario);
-    divElementCard.appendChild(pElementBase);
-    divElementCard.appendChild(divElementSimlink);
-
-    liElement.appendChild(divElementCard);
-    autoloadBases.appendChild(liElement);
+  } catch (err) {
+    alert(
+      "ERRO INTERNO FALTAL: " + err + "\n CONTATE O ADMINISTRADOR DO SITE!"
+    );
   }
 }
 
 function onError(error) {
   console.debug(error);
-  alert(error);
+  alert(
+    "ERRO INTERNO FALTAL: " + error + "\n CONTATE O ADMINISTRADOR DO SITE!"
+  );
 }
-
 
 // <li>
 //   <div class="card">
