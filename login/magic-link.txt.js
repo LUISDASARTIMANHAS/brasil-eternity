@@ -25,8 +25,7 @@ window.addEventListener("load", () => {
 
   function getData() {
     const inpEmail = document.getElementById("email");
-    const url =
-      "https://pingobras-sg.glitch.me/api/brasil-eternity/login/magiclink";
+    const url = `${window.env.apiUrl}/login/magiclink`;
     const date = new Date();
     const id = Math.floor(Math.random() * 20242002);
     const payloadLogin = {

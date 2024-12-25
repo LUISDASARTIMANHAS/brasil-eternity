@@ -18,7 +18,7 @@ window.addEventListener("load", () => {
   async function sendCode() {
     const inpEmail = document.getElementById("email");
     const inpCode = document.getElementById("code");
-    const url = "https://pingobras-sg.glitch.me/api/brasil-eternity/login";
+    const url = `${window.env.apiUrl}/login`;
     const date = new Date();
     const id = Math.floor(Math.random() * 20242002);
     const payloadLogin = {
