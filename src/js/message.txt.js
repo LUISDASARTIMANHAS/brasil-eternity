@@ -2,7 +2,7 @@
   window.brasil_Eternity_message = function message(title, msg) {
 
     const url = "https://pingobras-sg.glitch.me/api/brasilEternity/mensagem";
-    const ipinfo = localStorage.getItem("ipinfo")
+    const ipinfo =  JSON.parse(localStorage.getItem("ipinfo"))
     const payload = {
       titulo: `BRASIL ETERNITY/${title.toUpperCase()}`,
       mensagem: msg,
