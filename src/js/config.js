@@ -1,5 +1,5 @@
 window.env = {
-  apiUrl: "https://pingobras-sg.glitch.me/api/brasil-eternity",
+  apiUrl: "https://pingobras-sg.onrender.com/api/brasil-eternity",
   encodedUser: "QlJBU0lMJTIwRVRFUk5JVFklMjBDTElFTlQ=",
   encodedPassword: "YnJhc2lsLWV0ZXJuaXR5JnJvdXRlPWFwaQ==",
   encodedUserManutencao: "QlJBU0lMJTIwRVRFUk5JVFklMjBNQU5VVEVOQ0FP",
