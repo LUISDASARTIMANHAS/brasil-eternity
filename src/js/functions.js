@@ -35,7 +35,7 @@ function mostrarsenha() {
 //   (() => {
 //     var opcoes = {
 //       body: "As notificações estão ativadas!",
-//       icon: "https://cdn.glitch.global/5817ad45-950e-4225-9b84-8f4348004350/Brasil-Eternity-image.jpg?v=1705932727089",
+//       icon: "../src/assets/Brasil-Eternity-image.jpg",
 //     };
 //     // Verifica se o browser suporta notificações
 //     if (!("Notification" in window)) {

@@ -1,89 +1,89 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
   <head>
-
     <meta charset="utf-8" />
-    <meta http-equiv="Refresh" content="240">
+    <meta http-equiv="Refresh" content="240" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      http-equiv="Strict-Transport-Security"
+      content="max-age=31536000; includeSubDomains; preload"
+    />
 
-    <link rel="icon" href="https://cdn.glitch.global/5817ad45-950e-4225-9b84-8f4348004350/Brasil-Eternity-image.jpg?v=1705932727089" />
+    <link rel="icon" href="../src/assets/Brasil-Eternity-image.jpg" />
     <links></links>
-    <link rel="stylesheet" href="/src/css/reset.css">
-    
-    
-  <title>BRASIL ETERNITY LOGIN</title>
-  </head>  
+    <link rel="stylesheet" href="/src/css/reset.css" />
+
+    <title>BRASIL ETERNITY LOGIN</title>
+  </head>
   <body>
     <main>
-      
       <tela>
-        <h1> Entre na sua Conta</h1>
+        <h1>Entre na sua Conta</h1>
         <js id="msgError" class="msg-Error msg">Nenhum Erro Encontrado!</js>
         <js id="msgSuccess" class="msg-Success msg">Verificando...</js>
         <form id="form">
           <h2>Entrar Usando Magic Link</h2>
-          <p vermelho>indica campos obrigatórios (*) </p>
+          <p vermelho>indica campos obrigatórios (*)</p>
           <label required for="email">Email</label>
-          <input type="email"
-                 id="email"
-                 placeholder="Insira o seu e-mail"
-                 required>
-          
-          <button hidden 
-                  id="btnEntrar" 
-                  type="submit">
-            Enviar Código 
-          </button>
-            <div class="loading"
-                 id="loadingCode">    
-              <p class="load "></p>    
-            </div> 
+          <input
+            type="email"
+            id="email"
+            placeholder="Insira o seu e-mail"
+            required
+          />
+
+          <button hidden id="btnEntrar" type="submit">Enviar Código</button>
+          <div class="loading" id="loadingCode">
+            <p class="load"></p>
+          </div>
         </form>
-        
+
         <form hidden id="formCode">
-          <p vermelho>indica campos obrigatórios (*) </p>
+          <p vermelho>indica campos obrigatórios (*)</p>
           <label required for="code">Código</label>
-          <input type="number"
-                 id="code"
-                 placeholder="Insira o Código Enviado"
-                 required>
+          <input
+            type="number"
+            id="code"
+            placeholder="Insira o Código Enviado"
+            required
+          />
         </form>
-        
-        <label for="continueConnected"> Confiar neste Dispositivo durante 30 Dias? </label>
-        <input type="checkbox" 
-               id="continueConnected" 
-               name="continueConnected"
-               checked>
-        
+
+        <label for="continueConnected">
+          Confiar neste Dispositivo durante 30 Dias?
+        </label>
+        <input
+          type="checkbox"
+          id="continueConnected"
+          name="continueConnected"
+          checked
+        />
+
         <p>Não tem uma conta?</p>
-         <button
-           onclick="redirectUrl('/cadastro')"> 
-          Cadastrar
-        </button>
+        <button onclick="redirectUrl('/cadastro')">Cadastrar</button>
       </tela>
-      
     </main>
     <footer>
       <div id="direitos" class="direitos">
-        <div class="loading ">    
-          <p class="load "></p>    
-        </div>     
-      </div>    
+        <div class="loading">
+          <p class="load"></p>
+        </div>
+      </div>
     </footer>
-</body>
+  </body>
 
   <scripts>
     <script src="/login/magic-link.js" defer></script>
     <script src="/login/login.js" defer></script>
   </scripts>
   <autoscripts>
-    <script src="/src/js/load-scripts.js" defer></script>
-    <script src="https://pingobras.glitch.me/src/js/links.js"></script>  
+    <script src="/src/js/load-scripts.js" type="module"></script>
   </autoscripts>
-    <host>
-    <script src="https://pingobras.glitch.me/src/js/load-host.js" defer></script>
-    </host>
+  <host>
+    <script
+      src="https://pingobras.glitch.me/src/js/load-host.js"
+      defer
+    ></script>
+  </host>
 </html>
