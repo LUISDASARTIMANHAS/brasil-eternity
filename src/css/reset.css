@@ -11,8 +11,8 @@
 
 /* Estilo do fieldset */
 fieldset {
-    border: none;
-    padding: 0;
+  border: none;
+  padding: 0;
 }
 
 input[type="radio"] {
@@ -24,8 +24,10 @@ input[type="radio"] {
 
 .container button,
 .custom-button {
-  background: #ffcc00; /* Cor de fundo do botão */
-  color: black; /* Cor do texto */
+  background: #ffcc00;
+  /* Cor de fundo do botão */
+  color: black;
+  /* Cor do texto */
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
@@ -36,7 +38,8 @@ input[type="radio"] {
 
 .container button,
 .custom-button:hover {
-  background: #ffaa00; /* Cor de fundo ao passar o mouse */
+  background: #ffaa00;
+  /* Cor de fundo ao passar o mouse */
   transition: all 1s ease-out;
 }
 
@@ -57,13 +60,44 @@ fieldset[disabled] .disabled {
 
 .button,
 .btn,
+.default,
 button {
+  padding: 10px 12px 10px 12px;
+  font-size: 100%;
   text-transform: uppercase;
   background-color: red;
   font-weight: 600;
   border-style: none;
   border-bottom: 4px solid gray;
   border-right: 4px solid gray;
+
+  text-align: center;
+  display: inline-block;
+  vertical-align: baseline;
+  min-width: 128px;
+  min-height: 52px;
+  border: none;
+  margin: 10px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+.button:hover,
+.btn:hover,
+.default:hover,
+button:hover {
+  transition: all 1s ease-out;
+  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -o-transform: scale(1.1);
+  -webkit-transition: all 1s ease-out;
+  -moz-transition: all 1s ease-out;
+  -ms-transition: all 1s ease-out;
+  -o-transition: all 1s ease-out;
 }
 
 .tinos-regular {
@@ -91,7 +125,7 @@ button {
 }
 
 body {
-  background-image: URL(https://cdn.glitch.global/5817ad45-950e-4225-9b84-8f4348004350/Brasil-Eternity-image.jpg?v=1705932727089);
+  background-image: URL("../assets/Brasil-Eternity-image.jpg");
   background-size: cover;
   background-position: center;
   color: #ffffff;
@@ -108,7 +142,7 @@ body {
 }
 
 header,
-.subheader{
+.subheader {
   color: white;
   width: 100%;
   min-height: 90px;
@@ -127,7 +161,7 @@ header,
   align-content: center;
 }
 
-.subheader{
+.subheader {
   min-height: 50px;
   max-height: 70px;
   background-color: darkred;
@@ -320,10 +354,12 @@ ion-icon {
   width: 75%;
   border-radius: 10px;
 }
+
 .msg-Error {
   border-bottom: 3px solid red;
   color: red;
 }
+
 .msg-Success {
   border-bottom: 3px solid green;
   color: green;
@@ -337,6 +373,7 @@ ion-icon {
   left: 50px;
   opacity: 0.7;
 }
+
 .btnFixedLeft:hover {
   box-shadow: -8px 20px 20px gray;
 }
@@ -345,6 +382,7 @@ body.modo-escuro header {
   background-color: black;
   color: white;
 }
+
 body.modo-escuro tela {
   background-color: black;
   color: white;
@@ -383,9 +421,11 @@ box-bar bar {
   0% {
     right: 0%;
   }
+
   50% {
     right: -75%;
   }
+
   100% {
     right: 0%;
   }
@@ -401,9 +441,11 @@ box-bar bar {
   * {
     font-size: 16px;
   }
+
   main tela li {
     max-width: 85%;
   }
+
   main ul img {
     min-width: 100px;
     max-width: 212px;
@@ -475,6 +517,7 @@ userinfo .logo {
   -ms-transition: 0.2s;
   -o-transition: 0.2s;
 }
+
 h2:before {
   background-image: none;
 }
@@ -484,7 +527,7 @@ h2:before {
   margin-top: 20px;
 }
 
-.loading{
+.loading {
   display: flex;
   justify-content: center;
   text-align: center;
