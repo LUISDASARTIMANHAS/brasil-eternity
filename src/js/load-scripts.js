@@ -1,22 +1,36 @@
-// window.addEventListener("load", () => {
-// faz com que o script espere a pagina carregar incluindo importacoes indiretas
+import { renderScript } from "../lib/render.js";
+
 (() => {
   const autoscripts = document.querySelector("autoscripts");
-  const fonteUser = "/src/js/";
-  const srcsUser = [
-    "manutencao-redirect",
-    "functions",
-    "offline",
-    "message",
-    "config"
-  ];
+  const isGithubPages = location.hostname.includes("github.io");
+  const fonteUser = isGithubPages
+    ? `${window.location.origin}/brasil-eternity/src`
+    : "/src";
 
-  for (let i = 0; i < srcsUser.length; i++) {
-    var newScript = document.createElement("script");
+  const srcsModule = ["links","manutencao-redirect", "offline", "message", "ip-info"];
+  const srcsCJS = ["functions"];
+  const bootstrapsJs = ["bootstrap@5.3.6","popper@2.11.8"]
 
-    newScript.setAttribute("src", fonteUser + srcsUser[i] + ".js");
-    autoscripts.appendChild(newScript);
+  srcsModule.forEach((srcModule) => {
+    var url = `${fonteUser}/js/${srcModule}.js`;
+    renderScript(autoscripts, url, true);
 
-    console.log(" Novo Script Num: " + srcsUser[i]);
-  }
+    console.log(`%c [SISTEMA ATM BR]: Novo script ESM: ${url}`, "#ffaa00");
+  });
+
+  srcsCJS.forEach((srcCJS) => {
+    var url = `${fonteUser}/js/${srcCJS}.js`;
+
+    renderScript(autoscripts, url);
+
+    console.log(`%c [SISTEMA ATM BR]: Novo script: ${url}`, "#ffaa00");
+  });
+
+  bootstrapsJs.forEach((bootstrapJs) => {
+    var url = `${fonteUser}/lib/${bootstrapJs}.js`;
+
+    renderScript(autoscripts, url);
+
+    console.log(`%c [SISTEMA ATM BR]: Novo script Bootstrap Js: ${url}`, "#ffaa00");
+  });
 })();

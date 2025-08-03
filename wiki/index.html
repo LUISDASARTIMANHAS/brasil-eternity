@@ -1,67 +1,81 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Fórum/Wiki</title>
-  <link rel="stylesheet" href="/wiki/wiki.css">
-  <link rel="stylesheet" href="/src/css/reset.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Fórum/Wiki</title>
+    <link rel="stylesheet" href="/wiki/wiki.css" />
+    <link rel="stylesheet" href="/src/css/reset.css" />
+  </head>
+  <body>
     <header>
-        <div class="breadcrumb">
-            <span>Fórum > Início </span>
+      <div class="breadcrumb">
+        <span>Fórum > Início </span>
+      </div>
+      <div class="user-header" hidden>
+        <img
+          src="https://w7.pngwing.com/pngs/798/436/png-transparent-computer-icons-user-profile-avatar-profile-heroes-black-profile.png"
+          alt="Foto do Usuário"
+        />
+        <div class="user-info">
+          <h2>Not found</h2>
+          <p>Localização: Cidade, País</p>
         </div>
-        <div class="user-header" hidden>
-            <img src="https://w7.pngwing.com/pngs/798/436/png-transparent-computer-icons-user-profile-avatar-profile-heroes-black-profile.png" alt="Foto do Usuário">
-            <div class="user-info">
-                <h2>Not found</h2>
-                <p>Localização: Cidade, País</p>
-            </div>
-        </div>
+      </div>
     </header>
-  
-        <main class="main-wiki">
-        <nav class="sidebar">
-            <ul>
-                <li><a href="#">Início</a></li>
-                <li><a href="#">Categorias</a></li>
-                <li><a href="#">Usuários</a></li>
-                <li><a href="#">Configurações</a></li>
-            </ul>
-        </nav>
 
-          <section class="container-posts">
-          <div class="post">
-                <h2>Título do Post</h2>
-                <p>Descrição do post. O usuário precisa entrar no post para ver as mensagens.</p>
-                <a href="#">Ver Mensagens</a>
-            </div>
-            <div class="post">
-                <h2>Título do Post</h2>
-                <p>Descrição do post. O usuário precisa entrar no post para ver as mensagens.</p>
-                <a href="#">Ver Mensagens</a>
-            </div>
-            <!-- Adicione mais posts conforme necessário -->
-          </section>
+    <main class="main-wiki">
+      <nav class="sidebar">
+        <ul>
+          <li><a href="#">Início</a></li>
+          <li><a href="#">Categorias</a></li>
+          <li><a href="#">Usuários</a></li>
+          <li><a href="#">Configurações</a></li>
+        </ul>
+      </nav>
 
-        <aside class="online-users">
-            <h3>Usuários Online</h3>
-            <ul>
-                <li>
-                    <img src="https://w7.pngwing.com/pngs/798/436/png-transparent-computer-icons-user-profile-avatar-profile-heroes-black-profile.png" alt="Foto do Usuário">
-                    <span>Admin</span>
-                </li>
-                <li>
-                    <img src="https://w7.pngwing.com/pngs/798/436/png-transparent-computer-icons-user-profile-avatar-profile-heroes-black-profile.png" alt="Foto do Usuário">
-                    <span>Nome do Usuário 2</span>
-                </li>
-                <!-- Adicione mais usuários conforme necessário -->
-            </ul>
-        </aside>
-        </main>
+      <section class="container-posts">
+        <div class="post">
+          <h2>Título do Post</h2>
+          <p>
+            Descrição do post. O usuário precisa entrar no post para ver as
+            mensagens.
+          </p>
+          <a href="#">Ver Mensagens</a>
+        </div>
+        <div class="post">
+          <h2>Título do Post</h2>
+          <p>
+            Descrição do post. O usuário precisa entrar no post para ver as
+            mensagens.
+          </p>
+          <a href="#">Ver Mensagens</a>
+        </div>
+        <!-- Adicione mais posts conforme necessário -->
+      </section>
 
-</body>
-    <script src="/src/js/config.js" defer></script>
-    <script src="/wiki/wiki.js"></script>
+      <aside class="online-users">
+        <h3>Usuários Online</h3>
+        <ul>
+          <li>
+            <img
+              src="https://w7.pngwing.com/pngs/798/436/png-transparent-computer-icons-user-profile-avatar-profile-heroes-black-profile.png"
+              alt="Foto do Usuário"
+            />
+            <span>Admin</span>
+          </li>
+          <li>
+            <img
+              src="https://w7.pngwing.com/pngs/798/436/png-transparent-computer-icons-user-profile-avatar-profile-heroes-black-profile.png"
+              alt="Foto do Usuário"
+            />
+            <span>Nome do Usuário 2</span>
+          </li>
+          <!-- Adicione mais usuários conforme necessário -->
+        </ul>
+      </aside>
+    </main>
+  </body>
+  <script src="/src/js/config.js" defer></script>
+  <script src="/wiki/wiki.js"></script>
 </html>

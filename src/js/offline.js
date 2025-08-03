@@ -1,45 +1,44 @@
-// window.addEventListener("load", () => {
-// faz com que o script espere a pagina carregar incluindo importacoes indiretas
-// não e necessario aqui pois não usa window nem outras importacoes indiretas
+import config from "./config.js";
 (() => {
-  const url = "https://pingobras-sg.glitch.me/";
-  const date = new Date();
-  const id = Math.floor(Math.random() * 20242002);
-  const options = {
-    method: "GET",
-    mode: "cors",
-    headers: {
-      "content-type": "application/json;charset=utf-8",
-      key: date.getUTCHours() * date.getFullYear() * id,
-      id: id,
-    },
-  };
-  fetch(url, options)
-    .then((response) => {
-      if (response.status == 200) {
-        redirectOffline(false);
-      } else {
+  try {
+    const url = `${config.serverUrl}/status`;
+    const options = {
+      method: "GET",
+      mode: "cors",
+      headers: {
+        "content-type": "application/json;charset=utf-8",
+      },
+    };
+    fetch(url, options)
+      .then((response) => {
+        if (response.status == 200) {
+          redirectOffline(false);
+        } else {
+          redirectOffline(true);
+        }
+      })
+      .catch((error) => {
+        console.debug(`%c [SISTEMA DE STATUS] ${error}`, "color: #ff0000");
         redirectOffline(true);
+      });
+
+    function redirectOffline(offline) {
+      const body = document.querySelector("body");
+
+      if (offline) {
+        body.hidden = true;
+
+        if (body) {
+          body.style.display = "none";
+        }
+
+        setTimeout(() => {
+          window.location.href = "../sys/offline.html";
+        }, 5000);
       }
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-
-  function redirectOffline(offline) {
-    const body = document.querySelector("body");
-
-    if (offline) {
-      body.hidden = true;
-
-      if (body) {
-        body.style.display = "none";
-      }
-
-      setTimeout(() => {
-        window.location.href = "/sys/offline.html";
-      }, 5000);
     }
+    redirectOffline(false);
+  } catch (error) {
+    alert(`ERRO FATAL: ${error}`);
   }
-  redirectOffline(false);
 })();

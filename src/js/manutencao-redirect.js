@@ -1,57 +1,82 @@
-// window.addEventListener("load", () => {
-// faz com que o script espere a pagina carregar incluindo importacoes indiretas
-window.addEventListener("load", () => { 
-  const url = `${window.env.apiUrl}/manutencao`;
-  const date = new Date();
-  const id = Math.floor(Math.random() * 20242002);
-  const options = {
-    method: "GET",
-    mode: "cors",
-    headers: {
-      "content-type": "application/json;charset=utf-8",
-      key: date.getUTCHours() * date.getFullYear() * id,
-      id: id,
-      authorization: window.getAuthorizationHeader(),
-    },
-  };
-  fetch(url, options)
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        return response.text().then((errorText) => {
-          const errorMessage = `Statuscode: ${response.status} - ${errorText}`;
-          throw new Error(errorMessage);
-        });
-      }
-    })
-    .then((data) => {
-      console.log("DATA RESPONSE: ");
-      console.log(data);
-      redirectManutencao(data);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+import config from "./config.js";
+window.addEventListener("load", async () => {
+  try {
+    const url = `${config.serverUrl}/manutencao`;
+    const options = {
+      method: "GET",
+      mode: "cors",
+      headers: {
+        "content-type": "application/json;charset=utf-8",
+      },
+    };
+    await fetch(url, options)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          return response.text().then((errorText) => {
+            const errorMessage = `Statuscode: ${response.status} - ${errorText}`;
+            throw new Error(errorMessage);
+          });
+        }
+      })
+      .then((data) => {
+        redirectManutencao(data);
+      })
+      .catch((error) => {
+        console.debug(`%c [SISTEMA MANUTENÇÃO] ${error}`, "color: #ff0000");
+        redirectManutencao(true);
+      });
 
-  function redirectManutencao(offline) {
-    const devUser = JSON.parse(localStorage.getItem("dev")) || false;
-    const expUser =
-      JSON.parse(localStorage.getItem("experimentalMode")) || false;
-    const body = document.querySelector("body");
+    function redirectManutencao(offline) {
+      const body = document.querySelector("body");
+      const DebugMode = JSON.parse(localStorage.getItem("debugMode")) || false;
+      const verificarOfflineENaoDebugMode = offline && !DebugMode;
 
-    if ((offline && !devUser) || (offline && !devUser)) {
-      body.hidden = true;
+      if (DebugMode == true) {
+        // não permite que seja inserido mais de um elemento
 
-      if (body) {
-        body.style.display = "none";
+        if (document.getElementById("debugMode") == null) {
+          renderDebugElements();
+        }
       }
 
-      setTimeout(() => {
-        window.location.href = "/sys/manutencao.html";
-      }, 3000);
+      if (verificarOfflineENaoDebugMode) {
+        body.hidden = true;
+
+        if (body) {
+          body.style.display = "none";
+        }
+
+        setTimeout(() => {
+          window.location.href = "../sys/manutencao.html";
+        }, 3000);
+      }
     }
+    redirectManutencao(false);
+  } catch (error) {
+    alert(`ERRO FATAL IN MANUTENÇÃO SCRIPT: ${error}`);
   }
-  redirectManutencao(false);
 
+  function renderDebugElements() {
+    const body = document.querySelector("body");
+    const h1Alert = document.createElement("h1");
+    const button = document.createElement("button");
+
+    h1Alert.setAttribute("id", "debugMode");
+    h1Alert.setAttribute("class", "rgb");
+    h1Alert.setAttribute("rgb", "rgb");
+    h1Alert.textContent = "Debug Mode Online!";
+
+    button.setAttribute("class", "button button-red button-primary");
+    button.textContent = "Desativar";
+    button.addEventListener("click", () => {
+      localStorage.setItem("debugMode", false);
+      alert("Debug Mode Desativado!!");
+      window.location.reload();
+    })
+
+    h1Alert.appendChild(button);
+    body.insertAdjacentElement("beforebegin", h1Alert);
+  }
 });
