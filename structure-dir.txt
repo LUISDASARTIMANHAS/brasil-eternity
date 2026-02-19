@@ -1,0 +1,28 @@
+ O volume na unidade X ‚ EXTRA
+ O N£mero de S‚rie do Volume ‚ E823-AA22
+
+ Pasta de X:\Meus Projetos do VSCode\brasil-eternity
+
+19/02/2026  19:32    <DIR>          .
+19/02/2026  19:32    <DIR>          ..
+19/02/2026  19:30                15 .gitignore
+01/08/2025  09:30             7.832 .glitch-assets
+03/08/2025  13:25    <DIR>          cadastro
+01/08/2025  09:30    <DIR>          contato
+01/08/2025  09:30    <DIR>          doacao
+01/08/2025  09:30                53 google0bf10624b178a7d7.html
+03/08/2025  13:22             3.951 index.html
+03/08/2025  11:30    <DIR>          login
+03/08/2025  12:49    <DIR>          ranking
+03/08/2025  13:23             1.217 redirect.config.html
+01/08/2025  09:30                77 robots.txt
+01/08/2025  09:30             1.257 sitemap.xml
+03/08/2025  13:19    <DIR>          src
+19/02/2026  19:32               132 structure-dir.txt
+01/08/2025  09:30    <DIR>          sys
+01/08/2025  09:30    <DIR>          user
+01/08/2025  09:30    <DIR>          votacao
+01/08/2025  09:30    <DIR>          wa
+01/08/2025  09:30    <DIR>          wiki
+               8 arquivo(s)         14.534 bytes
+              13 pasta(s)   122.198.982.656 bytes dispon¡veis
