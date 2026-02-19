@@ -49,7 +49,13 @@ window.addEventListener("load", async () => {
         }
 
         setTimeout(() => {
-          window.location.href = "../sys/manutencao.html";
+          console.log(window.location.href);
+          if (window.location.hostname.includes("github.io")) {
+            window.location.href =
+              "https://luisdasartimanhas.github.io/brasil-eternity/sys/manutencao.html";
+          } else {
+            window.location.href = "../sys/manutencao.html";
+          }
         }, 3000);
       }
     }
@@ -74,7 +80,7 @@ window.addEventListener("load", async () => {
       localStorage.setItem("debugMode", false);
       alert("Debug Mode Desativado!!");
       window.location.reload();
-    })
+    });
 
     h1Alert.appendChild(button);
     body.insertAdjacentElement("beforebegin", h1Alert);

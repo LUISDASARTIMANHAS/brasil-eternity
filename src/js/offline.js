@@ -33,7 +33,13 @@ import config from "./config.js";
         }
 
         setTimeout(() => {
-          window.location.href = "../sys/offline.html";
+          console.log(window.location.href);
+          if (window.location.hostname.includes("github.io")) {
+            window.location.href =
+              "https://luisdasartimanhas.github.io/brasil-eternity/sys/offline.html";
+          } else {
+            window.location.href = "../sys/offline.html";
+          }
         }, 5000);
       }
     }
