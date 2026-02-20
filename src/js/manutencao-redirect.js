@@ -1,32 +1,34 @@
+import { getData } from "./apiUtils.mjs";
 import config from "./config.js";
 window.addEventListener("load", async () => {
   try {
-    const url = `${config.serverUrl}/manutencao`;
-    const options = {
-      method: "GET",
-      mode: "cors",
-      headers: {
-        "content-type": "application/json;charset=utf-8",
-      },
-    };
-    await fetch(url, options)
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          return response.text().then((errorText) => {
-            const errorMessage = `Statuscode: ${response.status} - ${errorText}`;
-            throw new Error(errorMessage);
-          });
-        }
-      })
-      .then((data) => {
-        redirectManutencao(data);
-      })
-      .catch((error) => {
-        console.debug(`%c [SISTEMA MANUTENÇÃO] ${error}`, "color: #ff0000");
-        redirectManutencao(true);
-      });
+    getData("manutencao")
+    // const url = `${config.apiUrl}/manutencao`;
+    // const options = {
+    //   method: "GET",
+    //   mode: "cors",
+    //   headers: {
+    //     "content-type": "application/json;charset=utf-8",
+    //   },
+    // };
+    // await fetch(url, options)
+    //   .then((response) => {
+    //     if (response.ok) {
+    //       return response.json();
+    //     } else {
+    //       return response.text().then((errorText) => {
+    //         const errorMessage = `Statuscode: ${response.status} - ${errorText}`;
+    //         throw new Error(errorMessage);
+    //       });
+    //     }
+    //   })
+    //   .then((data) => {
+    //     redirectManutencao(data);
+    //   })
+    //   .catch((error) => {
+    //     console.debug(`%c [SISTEMA MANUTENÇÃO] ${error}`, "color: #ff0000");
+    //     redirectManutencao(true);
+    //   });
 
     function redirectManutencao(offline) {
       const body = document.querySelector("body");

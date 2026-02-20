@@ -1,3 +1,4 @@
+import { getData } from "./apiUtils.mjs";
 import { renderScript } from "../lib/render.js";
 
 (() => {

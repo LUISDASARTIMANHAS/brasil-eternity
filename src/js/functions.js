@@ -5,14 +5,15 @@ const labelRegion = document.getElementById("labelRegion");
 const AreaDeTexto = document.getElementsByTagName("textarea");
 const iPInfo = JSON.parse(localStorage.getItem("ipinfo"));
 const region = iPInfo.region;
+const remoteAssets = "https://github.com/LUISDASARTIMANHAS/LUISDASARTIMANHAS/raw/refs/heads/main/SFX"
 const WindowSongError1 = new Audio(
-  "https://cdn.glitch.global/b39d6a4a-0e14-4b41-930d-29d3ccd6c137/Windows-error-song?v=1656019161212.mp3?v=1651870846885.mp3"
+  `${remoteAssets}/Windows-error-song.mp3`
 );
 const alarm = new Audio(
-  "https://cdn.glitch.global/b39d6a4a-0e14-4b41-930d-29d3ccd6c137/Shop empire 2 - Alarm.mp3?v=1660420687299.mp3"
+  `${remoteAssets}/Shop%20empire%202%20-%20Alarm.mp3`
 );
 const ClickMouseFUNCTIONS = new Audio(
-  "https://cdn.glitch.global/b39d6a4a-0e14-4b41-930d-29d3ccd6c137/click%20do%20mouse.mp3?v=1661006466474"
+  `${remoteAssets}/click%20do%20mouse.mp3`
 );
 
 if (labelRegion) {
@@ -109,12 +110,6 @@ function getRandomBin(max) {
 function getRandomHex(max) {
   return Math.floor(Math.random() * max).toString(16);
 }
-
-window.getAuthorizationHeader = function getAuthorizationHeader() {
-  const combined = `${window.env.encodedUser}:${window.env.encodedPassword}`; 
-  const doubleEncoded = btoa(btoa(combined));
-  return `Basic ${doubleEncoded}`;
-};
 
 
 //======================= Events listener =====================

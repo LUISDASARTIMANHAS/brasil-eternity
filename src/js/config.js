@@ -4,7 +4,8 @@ export default {
   ipToken: "f1dd48b5ecd676",
   userId: "asdadoeahdben",
   groupId:"CY4tlrUqwSj5RpdZqGlWgT",
-  encodedPassword: "==",
+  encodedPassword: "NDY1OTg=",
+  encodedUser: "bHVpc2Rhc2FydGltYW5oYXMuZ2l0aHViLmlv",
   encodedUserManutencao: "",
   encodedPasswordManutencao: "==",
 };

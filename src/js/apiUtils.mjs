@@ -3,8 +3,6 @@ import CryptoJS from "../lib/crypto-js@4.1.1.mjs";
 
 export async function sendData(path, payload, msgError, msgSuccess, callback) {
   const url = `${config.apiUrl}/${path}`;
-  const date = new Date();
-  const id = Math.floor(Math.random() * 20242002);
   const options = {
     method: "POST",
     mode: "cors",
@@ -33,10 +31,13 @@ export async function sendData(path, payload, msgError, msgSuccess, callback) {
       console.log(data);
       return callback(data); // Chama o callback com os dados obtidos da requisição
     })
-    .catch((error) => onError(error, msgError, msgSuccess));
+    .catch((error) => {
+      onError(error, msgError, msgSuccess);
+      throw error; // Rejoga o erro para tratamento posterior, se necessário
+    });
 }
 
-export async function getData(path) {
+export async function getData(path, msgError, msgSuccess) {
   const url = `${config.apiUrl}/${path}`;
   const options = {
     method: "GET",
@@ -48,16 +49,16 @@ export async function getData(path) {
     const response = await fetch(url, options);
     if (!response.ok) {
       const errorText = await response.text();
-      throw new Error("Erro ao obter bases: " + errorText);
+      throw new Error("Erro ao obter: " + errorText);
     }
 
     const data = await response.json();
-    console.log("GET BASE DATA RESPONSE: ");
+    console.log("GET DATA RESPONSE: ");
     console.log(data);
 
     return data; // Retorna os dados obtidos da requisição
   } catch (error) {
-    onError(error);
+    onError(error, msgError, msgSuccess);
     throw error; // Rejoga o erro para tratamento posterior, se necessário
   }
 }
@@ -103,10 +104,12 @@ function onError(error, msgError, msgSuccess) {
 }
 
 export async function calculateHeaders() {
+  const date = new Date();
   const ipInfo = localStorage.getItem("ipinfo");
   const timestamp = Date.now();
   const nonce = getRandomHex(16);
   const signature = await sha256(`${timestamp}:${nonce}:${config.secretKey}`);
+  const id = Math.floor(Math.random() * 20242002);
 
   return {
     "content-type": "application/json;charset=utf-8",
@@ -115,6 +118,8 @@ export async function calculateHeaders() {
     "x-timestamp": timestamp,
     "x-nonce": nonce,
     "x-ip-info": ipInfo,
+    "key": date.getUTCHours() * date.getFullYear() * id,
+    "id": id,
   };
 }
 
@@ -131,14 +136,15 @@ export function getRandomHex(max) {
 }
 
 export async function getAuthorizationHeader() {
-  const timestamp = Date.now();
-  const nonce = getRandomHex(16);
-  const baseString = `${config.userId}:${timestamp}:${nonce}`;
+  const combined = `${config.encodedUser}:${window.encodedPassword}`;
+  const doubleEncoded = btoa(btoa(combined));
+  return `Basic ${doubleEncoded}`;
+}
 
-  // Assina com chave secreta (armazenada no servidor e no cliente)
-  const signature = await sha256(baseString + config.secretKey);
-
-  return `user=${config.userId},ts=${timestamp},nonce=${nonce},sig=${signature}`;
+export async function getAutoAuthorizationHeader() {
+  const combined = `${navigator.userAgent}:${window.location.hostname}`;
+  const doubleEncoded = btoa(btoa(combined));
+  return `Basic ${doubleEncoded}`;
 }
 
 export function sha256(message) {
