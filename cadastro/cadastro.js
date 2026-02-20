@@ -1,3 +1,6 @@
+import config from "../src/js/config.js";
+import { sendData } from "../src/js/apiUtils.mjs";
+
 window.addEventListener("load", () => {
   const form = document.getElementById("form");
   const msgError = document.getElementById("msgError");
@@ -31,68 +34,28 @@ window.addEventListener("load", () => {
     ) {
       alert("A imagem precisa ser png ou jpg");
     } else {
-      sendData(inpUsuario.value, inpEmail.value, inpPrivacity.value, thumbnail);
+      cadastrar(
+        inpUsuario.value,
+        inpEmail.value,
+        inpPrivacity.value,
+        thumbnail,
+      );
     }
   }
 
-  async function sendData(user, email, privacityPerfil, PerfilImg) {
-    const url = "https://pingobras-sg.glitch.me/api/brasil-eternity/cadastro";
-    const date = new Date();
-    const id = Math.floor(Math.random() * 20242002);
+  async function cadastrar(user, email, privacityPerfil, PerfilImg) {
     const payloadLogin = {
       usuario: user,
       email: email,
       privacity: privacityPerfil,
       PerfilIMG: PerfilImg,
     };
-    const options = {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        "content-type": "application/json;charset=utf-8",
-        Authorization: window.getAuthorizationHeader(),
-        key: date.getUTCHours() * date.getFullYear() * id,
-        id: id,
-      },
-      body: JSON.stringify(payloadLogin),
-    };
-
-    msgError.setAttribute("style", "display: none");
-    msgSuccess.innerHTML = "Aguardando Servidor....";
-    msgSuccess.setAttribute("style", "display: block");
-   await cadastroMessage(`Cadastrando ${user}, aguarde confirmação!`);
-    fetch(url, options)
-      .then(async (response) => {
-        if (response.ok) {
-          await cadastroMessage(`Cadastrado com sucesso!`);
-          return response.text();
-        } else {
-          return response.text().then(async (errorText) => {
-            await cadastroMessage("Erro ao cadastrar: " + errorText);
-            throw new Error("Erro ao cadastrar: " + errorText);
-          });
-        }
-      })
-      .then((data) => {
-        console.log("DATA RESPONSE: ");
-        console.log(data);
-        alert(data);
-        msgSuccess.innerHTML = "Redirecionando....";
-        setTimeout(() => {
-          window.location.href = "/login";
-        }, 5000);
-      })
-      .catch((error) => onError(error));
+    sendData("cadastro", payloadLogin, msgError, msgSuccess, (data) => {
+      window.location.href = "../user";
+    });
   }
 
   async function cadastroMessage(msg) {
     await window.brasil_Eternity_message("CADASTRO", msg);
-  }
-
-  function onError(error) {
-    console.debug(error);
-    msgError.setAttribute("style", "display: block");
-    msgError.innerHTML = error;
-    msgSuccess.setAttribute("style", "display: none");
   }
 });
