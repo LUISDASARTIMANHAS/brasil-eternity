@@ -65,7 +65,7 @@ function renderBases(database) {
         var pElementSimlink = document.createElement("p");
         var aElementSimlink = document.createElement("a");
         let qrCodeconfig = {
-          text: base.simlink || "/",
+          text: base.simlink || "../",
           width: 128,
           height: 128,
           colorDark: "#000000",
@@ -106,7 +106,7 @@ function renderBases(database) {
         pElementSimlink.textContent = "SimLink: ";
 
         //Configurações do a simlink do p simlink
-        aElementSimlink.setAttribute("href", base.simlink || "/");
+        aElementSimlink.setAttribute("href", base.simlink || "../");
         aElementSimlink.setAttribute("target", "_blank");
         aElementSimlink.textContent = "Click Here";
 

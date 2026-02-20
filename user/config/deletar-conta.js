@@ -44,7 +44,7 @@ window.addEventListener("load", () => {
           await message(data);
           alert(data);
           setTimeout(() => {
-            window.location.href = "/";
+            window.location.href = "../";
           }, 2000);
         })
         .catch((error) => onError(error));
