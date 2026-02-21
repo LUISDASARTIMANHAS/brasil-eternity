@@ -1,7 +1,7 @@
 import config from "./config.js";
 import CryptoJS from "../lib/crypto-js@4.1.1.mjs";
 
-export async function sendData(path, payload, msgError, msgSuccess, callback) {
+export async function sendData(path, payload, callback) {
   const url = `${config.apiUrl}/${path}`;
   const options = {
     method: "POST",
@@ -9,32 +9,36 @@ export async function sendData(path, payload, msgError, msgSuccess, callback) {
     headers: await calculateHeaders(),
     body: JSON.stringify(payload),
   };
-
-  msgError.setAttribute("style", "display: none");
-  msgSuccess.innerHTML = "Aguardando Servidor....";
-  msgSuccess.setAttribute("style", "display: block");
-  await message(path, `Enviando solicitação... Aguarde confirmação!`);
-  fetch(url, options)
-    .then(async (response) => {
-      if (response.ok) {
-        await message(path, `Solicitação concluida com sucesso!`);
-        return response.text();
-      } else {
-        return response.text().then(async (errorText) => {
-          await message("Erro ao cadastrar: " + errorText);
-          throw new Error("Erro ao cadastrar: " + errorText);
-        });
-      }
-    })
-    .then((data) => {
-      console.log("DATA RESPONSE: ");
-      console.log(data);
-      return callback(data); // Chama o callback com os dados obtidos da requisição
-    })
-    .catch((error) => {
-      onError(error, msgError, msgSuccess);
-      throw error; // Rejoga o erro para tratamento posterior, se necessário
-    });
+  try {
+    showMessage("Aguardando Servidor....");
+    await telemetria(path, `Enviando solicitação... Aguarde confirmação!`);
+    fetch(url, options)
+      .then(async (response) => {
+        if (response.ok) {
+          showMessage("Solicitação concluida com sucesso!");
+          await telemetria(path, `Solicitação concluida com sucesso!`);
+          return response.text();
+        } else {
+          return response.text().then(async (errorText) => {
+            showError("Erro: " + errorText);
+            await telemetria(path, "Erro: " + errorText);
+            throw new Error("Erro: " + errorText);
+          });
+        }
+      })
+      .then((data) => {
+        console.log("DATA RESPONSE: ");
+        console.log(data);
+        return callback(data); // Chama o callback com os dados obtidos da requisição
+      })
+      .catch((error) => {
+        onError(error);
+        throw error; // Rejoga o erro para tratamento posterior, se necessário
+      });
+  } catch (error) {
+    onError(error);
+    throw error; // Rejoga o erro para tratamento posterior, se necessário
+  }
 }
 
 export async function getData(path, msgError, msgSuccess) {
@@ -63,11 +67,12 @@ export async function getData(path, msgError, msgSuccess) {
   }
 }
 
-export async function message(title, msg) {
+export async function telemetria(title, msg) {
   const url = `${config.apiUrl}/mensagem`;
   const payload = {
     titulo: `BRASIL ETERNITY/${title.toUpperCase()}`,
     mensagem: msg,
+    ipinfo: localStorage.getItem("ipinfo"),
   };
   const options = {
     method: "POST",
@@ -89,18 +94,15 @@ export async function message(title, msg) {
 
     return data; // Retorna os dados obtidos da requisição
   } catch (error) {
-    onError(error);
+    console.debug(error);
     throw error; // Rejoga o erro para tratamento posterior, se necessário
   }
 }
 
-function onError(error, msgError, msgSuccess) {
+function onError(error) {
   console.debug(error);
-  if (msgError && msgSuccess) {
-    msgError.setAttribute("style", "display: block");
-    msgError.innerHTML = error;
-    msgSuccess.setAttribute("style", "display: none");
-  }
+  telemetria("onError", error);
+  showError(error);
 }
 
 export async function calculateHeaders() {
@@ -118,9 +120,25 @@ export async function calculateHeaders() {
     "x-timestamp": timestamp,
     "x-nonce": nonce,
     "x-ip-info": ipInfo,
-    "key": date.getUTCHours() * date.getFullYear() * id,
-    "id": id,
+    key: date.getUTCHours() * date.getFullYear() * id,
+    id: id,
   };
+}
+
+export function showError(error) {
+  const msgError = document.getElementById("msgError");
+  const msgSuccess = document.getElementById("msgSuccess");
+  msgError.setAttribute("style", "display: block");
+  msgError.textContent = error;
+  msgSuccess.setAttribute("style", "display: none");
+}
+
+export function showMessage(message) {
+  const msgError = document.getElementById("msgError");
+  const msgSuccess = document.getElementById("msgSuccess");
+  msgError.setAttribute("style", "display: none");
+  msgSuccess.textContent = message;
+  msgSuccess.setAttribute("style", "display: block");
 }
 
 export function getRandomInt(max) {

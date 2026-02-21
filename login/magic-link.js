@@ -1,3 +1,5 @@
+import { sendData } from "../src/js/apiUtils.mjs";
+
 window.addEventListener("load", () => {
   const form = document.getElementById("form");
   const formCode = document.getElementById("formCode");
@@ -20,65 +22,68 @@ window.addEventListener("load", () => {
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
-    getData();
+    getMagicLink();
   });
 
-  function getData() {
+  async function getMagicLink() {
     const inpEmail = document.getElementById("email");
-    const url = `${window.env.apiUrl}/login/magiclink`;
-    const date = new Date();
-    const id = Math.floor(Math.random() * 20242002);
-    const payloadLogin = {
+    const payload = {
       email: inpEmail.value,
     };
-    const options = {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        "content-type": "application/json;charset=utf-8",
-        Authorization: window.getAuthorizationHeader(),
-        key: date.getUTCHours() * date.getFullYear() * id,
-        id: id,
-      },
-      body: JSON.stringify(payloadLogin),
-    };
-
-    formMessage("Aguardando Servidor...");
     btnEntrar.hidden = true;
     loading.hidden = false;
-    loginMessage(` ${censurarEmail(inpEmail.value)} pediu um magic link!`);
-    fetch(url, options)
-      .then(async (response) => {
-        if (response.ok) {
-          formMessage("Aguardando Código de Confirmação!");
-          await loginMessage(`Magic Link enviado com sucesso!`);
-          return response.text();
-        } else {
-          return response.text().then(async (errorText) => {
-            btnEntrar.hidden = false;
-            loading.hidden = true;
-            await loginMessage(
-              "Erro ao Enviar Codigo Magick Link: " + errorText
-            );
-            throw new Error("Erro ao Enviar Codigo Magick Link: " + errorText);
-          });
-        }
-      })
-      .then((data) => {
-        console.log("DATA RESPONSE: ");
-        console.log(data);
-        formMessage(data);
-        form.hidden = true;
-        formCode.hidden = false;
-      })
-      .catch((error) => onError(error));
+    await sendData("login/magiclink", payload, msgError, msgSuccess, (data) => {
+      alert(data);
+    });
+    // const url = `${window.env.apiUrl}/`;
+    // const payloadLogin = {
+    //   email: inpEmail.value,
+    // };
+    // const options = {
+    //   method: "POST",
+    //   mode: "cors",
+    //   headers: {
+    //     "content-type": "application/json;charset=utf-8",
+    //     Authorization: window.getAuthorizationHeader(),
+    //     key: date.getUTCHours() * date.getFullYear() * id,
+    //     id: id,
+    //   },
+    //   body: JSON.stringify(payloadLogin),
+    // };
+
+    // formMessage("Aguardando Servidor...");
+    // btnEntrar.hidden = true;
+    // loading.hidden = false;
+    // loginMessage(` ${censurarEmail(inpEmail.value)} pediu um magic link!`);
+    // fetch(url, options)
+    //   .then(async (response) => {
+    //     if (response.ok) {
+    //       formMessage("Aguardando Código de Confirmação!");
+    //       await loginMessage(`Magic Link enviado com sucesso!`);
+    //       return response.text();
+    //     } else {
+    //       return response.text().then(async (errorText) => {
+    //         btnEntrar.hidden = false;
+    //         loading.hidden = true;
+    //         await loginMessage(
+    //           "Erro ao Enviar Codigo Magick Link: " + errorText
+    //         );
+    //         throw new Error("Erro ao Enviar Codigo Magick Link: " + errorText);
+    //       });
+    //     }
+    //   })
+    //   .then((data) => {
+    //     console.log("DATA RESPONSE: ");
+    //     console.log(data);
+    //     formMessage(data);
+    //     form.hidden = true;
+    //     formCode.hidden = false;
+    //   })
+    //   .catch((error) => onError(error));
   }
 
   async function loginMessage(msg) {
-    await window.brasil_Eternity_message(
-      "LOGIN",
-      msg
-    );
+    await window.brasil_Eternity_message("LOGIN", msg);
   }
 
   function formMessage(message) {
@@ -120,5 +125,4 @@ window.addEventListener("load", () => {
       return email;
     }
   }
-
 });
