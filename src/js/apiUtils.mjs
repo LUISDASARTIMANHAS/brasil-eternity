@@ -128,17 +128,21 @@ export async function calculateHeaders() {
 export function showError(error) {
   const msgError = document.getElementById("msgError");
   const msgSuccess = document.getElementById("msgSuccess");
-  msgError.setAttribute("style", "display: block");
-  msgError.textContent = error;
-  msgSuccess.setAttribute("style", "display: none");
+  if (msgError && msgSuccess) {
+    msgError.setAttribute("style", "display: block");
+    msgError.textContent = error;
+    msgSuccess.setAttribute("style", "display: none");
+  }
 }
 
 export function showMessage(message) {
   const msgError = document.getElementById("msgError");
   const msgSuccess = document.getElementById("msgSuccess");
-  msgError.setAttribute("style", "display: none");
-  msgSuccess.textContent = message;
-  msgSuccess.setAttribute("style", "display: block");
+  if (msgError && msgSuccess) {
+    msgError.setAttribute("style", "display: none");
+    msgSuccess.textContent = message;
+    msgSuccess.setAttribute("style", "display: block");
+  }
 }
 
 export function getRandomInt(max) {
