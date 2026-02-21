@@ -1,5 +1,5 @@
 import config from "./config.js";
-import { message } from "./apiUtils.mjs";
+import { telemetria } from "./apiUtils.mjs";
 (() => {
   const btnRedirect = document.getElementById("redirect");
   const textWa = "Redirecionado pelo site";
@@ -29,7 +29,7 @@ import { message } from "./apiUtils.mjs";
   }
 
   function redirectMsg(msg) {
-    message("REDIRECT", msg);
+    telemetria("REDIRECT", msg);
     incrementBar(75);
     if (useNumber) {
       alert(
